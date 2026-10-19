@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "*.html", "use": "@vercel/static" },
+    { "src": "avatars/**", "use": "@vercel/static" }
+  ],
+  "routes": [
+    { "src": "/funil", "dest": "/funil.html" },
+    { "src": "/vendas", "dest": "/vendas.html" },
+    { "src": "/demo", "dest": "/demo.html" },
+    { "src": "/", "dest": "/funil.html" }
+  ]
+}

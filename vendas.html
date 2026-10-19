@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TrocaRostoAPP - Garanta o Seu</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+  --bg: #f5f7fa;
+  --surface: #ffffff;
+  --surface2: #eef1f6;
+  --border: #dde1e8;
+  --fg: #1a1d26;
+  --fg-dim: #6b7280;
+  --accent: #0ea5e9;
+  --accent2: #06b6d4;
+  --green: #22c55e;
+  --green2: #16a34a;
+  --glow: rgba(14, 165, 233, 0.15);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Inter', system-ui, sans-serif;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 40px 16px 60px;
+}
+
+.badge {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 16px;
+}
+
+h1 {
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  font-weight: 900;
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+h1 span {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  font-size: 1.05rem;
+  color: var(--fg-dim);
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+
+.benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 36px;
+}
+.benefit {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
+}
+.benefit-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--surface2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+.benefit h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+.benefit p {
+  font-size: 0.85rem;
+  color: var(--fg-dim);
+  line-height: 1.5;
+}
+
+.pricing-card {
+  background: var(--surface);
+  border: 2px solid var(--accent);
+  border-radius: 20px;
+  padding: 32px 24px;
+  text-align: center;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 30px var(--glow);
+  position: relative;
+  overflow: hidden;
+}
+.pricing-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2), var(--green));
+}
+
+.old-price {
+  font-size: 0.95rem;
+  color: var(--fg-dim);
+  text-decoration: line-through;
+  margin-bottom: 4px;
+}
+.price-tag {
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+.price-tag small {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--fg-dim);
+}
+.price-note {
+  font-size: 0.85rem;
+  color: var(--fg-dim);
+  margin-bottom: 24px;
+}
+
+.btn-buy {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  border-radius: 14px;
+  border: none;
+  background: linear-gradient(135deg, var(--green), var(--green2));
+  color: white;
+  font-family: inherit;
+  font-size: 1.1rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  text-align: center;
+  margin-bottom: 12px;
+}
+.btn-buy:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(34, 197, 94, 0.3);
+}
+
+.guarantee {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: var(--fg-dim);
+  margin-bottom: 32px;
+}
+
+.faq {
+  margin-top: 32px;
+}
+.faq h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.faq-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+.faq-q {
+  padding: 14px 16px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.faq-q::after {
+  content: '+';
+  font-size: 1.2rem;
+  color: var(--fg-dim);
+  transition: transform 0.2s;
+}
+.faq-item.open .faq-q::after {
+  transform: rotate(45deg);
+}
+.faq-a {
+  padding: 0 16px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s, padding 0.3s;
+  font-size: 0.85rem;
+  color: var(--fg-dim);
+  line-height: 1.6;
+}
+.faq-item.open .faq-a {
+  max-height: 200px;
+  padding: 0 16px 14px;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 0.75rem;
+  color: var(--fg-dim);
+}
+
+.raspadinha-section {
+  margin-bottom: 32px;
+  text-align: center;
+}
+.raspadinha-label {
+  font-size: 0.9rem;
+  color: var(--fg-dim);
+  margin-bottom: 12px;
+}
+.raspadinha-container {
+  position: relative;
+  width: 280px;
+  height: 100px;
+  margin: 0 auto;
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+.raspadinha-prize {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #fef9c3, #fde68a);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #b45309;
+}
+.raspadinha-cover {
+  position: absolute;
+  inset: 0;
+}
+.raspadinha-cover canvas {
+  width: 100%;
+  height: 100%;
+}
+.raspadinha-result {
+  display: none;
+  text-align: center;
+  margin-top: 12px;
+  font-weight: 700;
+  color: var(--green2);
+  font-size: 0.95rem;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <span class="badge">Oferta especial</span>
+
+  <h1>Troque de rosto em <span>qualquer</span> videochamada, site ou aplicativo</h1>
+
+  <p class="subtitle">
+    O TrocaRostoAPP funciona em tempo real. Use no Zoom, Google Meet, em sites de verificação, aplicativos e qualquer plataforma que use câmera.
+  </p>
+
+  <div class="raspadinha-section">
+    <p class="raspadinha-label">Raspe e descubra seu desconto:</p>
+    <div class="raspadinha-container" id="raspadinha">
+      <div class="raspadinha-prize">CUPOM: 10% OFF</div>
+      <div class="raspadinha-cover">
+        <canvas id="scratchCanvas"></canvas>
+      </div>
+    </div>
+    <p class="raspadinha-result" id="raspadinhaResult">Parabéns! Você ganhou 10% de desconto!</p>
+  </div>
+
+  <div class="benefits">
+    <div class="benefit">
+      <div class="benefit-icon">📹</div>
+      <div>
+        <h4>Funciona em videochamadas</h4>
+        <p>Zoom, Google Meet, Teams, WhatsApp Web e qualquer plataforma de vídeo</p>
+      </div>
+    </div>
+    <div class="benefit">
+      <div class="benefit-icon">🌐</div>
+      <div>
+        <h4>Sites e aplicativos</h4>
+        <p>Use em qualquer site ou app que peça acesso à câmera</p>
+      </div>
+    </div>
+    <div class="benefit">
+      <div class="benefit-icon">⚡</div>
+      <div>
+        <h4>Tempo real, sem delay</h4>
+        <p>Troca instantânea do rosto que acompanha seus movimentos naturalmente</p>
+      </div>
+    </div>
+    <div class="benefit">
+      <div class="benefit-icon">🎓</div>
+      <div>
+        <h4>Passo a passo completo</h4>
+        <p>Ensinamos a instalar e usar na prática em qualquer situação</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pricing-card">
+    <p class="old-price">De R$ 197,00</p>
+    <p class="price-tag">R$ 49<small>,90</small></p>
+    <p class="price-note">Pagamento único. Acesso vitalício.</p>
+    <a class="btn-buy" href="https://wa.me/5563999147717?text=Quero%20o%20TrocaRostoAPP%20por%20R%2449%2C90" target="_blank">
+      QUERO O TROCAROSTOAPP
+    </a>
+    <div class="guarantee">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      7 dias de garantia incondicional
+    </div>
+  </div>
+
+  <div class="faq">
+    <h3>Perguntas frequentes</h3>
+    <div class="faq-item">
+      <div class="faq-q">Funciona em qualquer computador?</div>
+      <div class="faq-a">Sim! Funciona em Windows e Mac. Basta seguir o passo a passo que enviamos.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Precisa de placa de vídeo boa?</div>
+      <div class="faq-a">Não necessariamente. O sistema roda em computadores comuns, mas uma placa de vídeo ajuda na fluidez.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Como recebo o produto?</div>
+      <div class="faq-a">Após o pagamento você recebe acesso ao sistema completo + tutorial passo a passo por WhatsApp.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Posso usar qualquer rosto?</div>
+      <div class="faq-a">Sim! Basta ter uma foto do rosto que deseja usar. O sistema aceita qualquer imagem.</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>TrocaRostoAPP &copy; 2026. Todos os direitos reservados.</p>
+  </div>
+</div>
+
+<script>
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    q.parentElement.classList.toggle('open');
+  });
+});
+
+const scratchCanvas = document.getElementById('scratchCanvas');
+const sctx = scratchCanvas.getContext('2d');
+let scratching = false, scratchPercent = 0;
+
+function initScratch() {
+  const rect = scratchCanvas.parentElement.getBoundingClientRect();
+  scratchCanvas.width = rect.width * 2;
+  scratchCanvas.height = rect.height * 2;
+  sctx.scale(2, 2);
+  sctx.fillStyle = '#cbd5e1';
+  sctx.fillRect(0, 0, rect.width, rect.height);
+  sctx.fillStyle = '#94a3b8';
+  sctx.font = '600 14px Inter, sans-serif';
+  sctx.textAlign = 'center';
+  sctx.textBaseline = 'middle';
+  sctx.fillText('Raspe aqui', rect.width / 2, rect.height / 2);
+}
+
+function scratch(x, y) {
+  const rect = scratchCanvas.getBoundingClientRect();
+  const sx = (x - rect.left);
+  const sy = (y - rect.top);
+  sctx.globalCompositeOperation = 'destination-out';
+  sctx.beginPath();
+  sctx.arc(sx, sy, 20, 0, Math.PI * 2);
+  sctx.fill();
+  checkScratch();
+}
+
+function checkScratch() {
+  const data = sctx.getImageData(0, 0, scratchCanvas.width, scratchCanvas.height).data;
+  let transparent = 0;
+  for (let i = 3; i < data.length; i += 16) {
+    if (data[i] === 0) transparent++;
+  }
+  const total = data.length / 16;
+  scratchPercent = transparent / total;
+  if (scratchPercent > 0.5) {
+    scratchCanvas.parentElement.style.display = 'none';
+    document.getElementById('raspadinhaResult').style.display = 'block';
+  }
+}
+
+scratchCanvas.addEventListener('mousedown', () => scratching = true);
+scratchCanvas.addEventListener('mouseup', () => scratching = false);
+scratchCanvas.addEventListener('mouseleave', () => scratching = false);
+scratchCanvas.addEventListener('mousemove', e => { if (scratching) scratch(e.clientX, e.clientY); });
+scratchCanvas.addEventListener('touchstart', e => { e.preventDefault(); scratching = true; });
+scratchCanvas.addEventListener('touchend', () => scratching = false);
+scratchCanvas.addEventListener('touchmove', e => {
+  e.preventDefault();
+  if (scratching) scratch(e.touches[0].clientX, e.touches[0].clientY);
+}, { passive: false });
+
+window.addEventListener('load', initScratch);
+window.addEventListener('resize', initScratch);
+</script>
+</body>
+</html>
