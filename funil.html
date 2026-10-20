@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JYVM2KNB8S"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JYVM2KNB8S');
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TrocaRostoAPP - Demo ao Vivo</title>
@@ -344,6 +352,28 @@ body {
 }
 .popup-close:hover { color: var(--fg); }
 
+/* Floating WhatsApp button */
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 16px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #25d366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+  z-index: 997;
+  text-decoration: none;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.whatsapp-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 30px rgba(37, 211, 102, 0.5);
+}
+
 .features {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -375,8 +405,12 @@ body {
 <body>
 
 <div class="hero">
-  <h1>TrocaRostoAPP - Teste Agora</h1>
-  <p>Troque de rosto em tempo real em videochamadas, sites e aplicativos. Escolha um avatar e veja funcionando na sua webcam.</p>
+  <div class="sr" data-dir="down" data-delay="0">
+    <h1>TrocaRostoAPP - Teste Agora</h1>
+  </div>
+  <div class="sr" data-dir="up" data-delay="150">
+    <p>Troque de rosto em tempo real em videochamadas, sites e aplicativos. Escolha um avatar e veja funcionando na sua webcam.</p>
+  </div>
 </div>
 
 <div class="demo-container">
@@ -436,29 +470,45 @@ body {
   </div>
 
   <div class="features">
-    <div class="feature-card">
-      <div class="icon">📹</div>
-      <h4>Videochamadas</h4>
-      <p>Funciona no Zoom, Google Meet, Teams e qualquer app de video</p>
+    <div class="sr" data-dir="up" data-delay="0">
+      <div class="feature-card">
+        <div class="icon">📹</div>
+        <h4>Videochamadas</h4>
+        <p>Funciona no Zoom, Google Meet, Teams e qualquer app de video</p>
+      </div>
     </div>
-    <div class="feature-card">
-      <div class="icon">🌐</div>
-      <h4>Sites e Apps</h4>
-      <p>Use em qualquer site ou aplicativo que use câmera</p>
+    <div class="sr" data-dir="up" data-delay="150">
+      <div class="feature-card">
+        <div class="icon">🌐</div>
+        <h4>Sites e Apps</h4>
+        <p>Use em qualquer site ou aplicativo que use câmera</p>
+      </div>
     </div>
-    <div class="feature-card">
-      <div class="icon">⚡</div>
-      <h4>Tempo Real</h4>
-      <p>Troca instantânea, sem delay, funciona ao vivo</p>
+    <div class="sr" data-dir="up" data-delay="300">
+      <div class="feature-card">
+        <div class="icon">⚡</div>
+        <h4>Tempo Real</h4>
+        <p>Troca instantânea, sem delay, funciona ao vivo</p>
+      </div>
     </div>
   </div>
 
-  <div class="cta-bottom">
-    <h3>Tenha o TrocaRostoAPP completo</h3>
-    <p class="price">Por apenas <strong>R$ 49,90</strong></p>
-    <a class="btn-cta" href="/vendas">Quero o TrocaRostoAPP</a>
+  <div class="sr" data-dir="up" data-delay="100">
+    <div class="cta-bottom">
+      <h3>Tenha o TrocaRostoAPP completo</h3>
+      <p class="price">Por apenas <strong>R$ 49,90</strong></p>
+      <a class="btn-cta" href="/vendas">Quero o TrocaRostoAPP</a>
+    </div>
   </div>
 </div>
+
+<!-- Progressive Blur -->
+<div style="position:fixed;bottom:0;left:0;width:100%;height:80px;z-index:999;pointer-events:none" aria-hidden="true" id="progressiveBlur"></div>
+
+<!-- WhatsApp Float -->
+<a class="whatsapp-float" href="https://wa.me/5563999147717?text=Oi%2C%20tenho%20interesse%20no%20TrocaRostoAPP" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
 
 <div class="popup-overlay" id="popupOverlay" style="display:none">
   <div class="popup-box">
@@ -832,6 +882,52 @@ document.getElementById('smoothSlider').addEventListener('input', e => {
   smoothAmount = parseInt(e.target.value);
   document.getElementById('smoothVal').textContent = e.target.value;
 });
+</script>
+<script>
+// ScrollReveal
+(function(){
+  var els = document.querySelectorAll('.sr');
+  els.forEach(function(el){
+    var dir = el.dataset.dir || 'up';
+    var delay = parseInt(el.dataset.delay) || 0;
+    var tx = 0, ty = 0;
+    if(dir==='up') ty = 40;
+    else if(dir==='down') ty = -40;
+    else if(dir==='left') tx = -40;
+    else if(dir==='right') tx = 40;
+    el.style.opacity = '0';
+    el.style.transform = 'translate('+tx+'px,'+ty+'px)';
+    el.style.transition = 'opacity 0.7s cubic-bezier(0.25,0.46,0.45,0.94) '+delay+'ms, transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94) '+delay+'ms';
+    el.style.willChange = 'opacity, transform';
+  });
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translate(0,0)';
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+  els.forEach(function(el){ obs.observe(el); });
+})();
+
+// Progressive Blur
+(function(){
+  var container = document.getElementById('progressiveBlur');
+  if(!container) return;
+  var blurs = [0.25,0.5,1,2,4,8,16,32];
+  for(var i=0;i<8;i++){
+    var layer = document.createElement('div');
+    var start = i*12.5, mid1 = start+12.5, mid2 = mid1+12.5, end = mid2+12.5;
+    var mask = 'linear-gradient(to bottom';
+    if(i<6) mask += ',transparent '+start+'%,black '+mid1+'%,black '+mid2+'%,transparent '+end+'%)';
+    else if(i===6) mask += ',transparent '+start+'%,black '+mid1+'%,black 100%)';
+    else mask += ',transparent '+start+'%,black 100%)';
+    layer.style.cssText = 'position:absolute;inset:0;backdrop-filter:blur('+blurs[i]+'px);-webkit-backdrop-filter:blur('+blurs[i]+'px);mask-image:'+mask+';-webkit-mask-image:'+mask;
+    container.appendChild(layer);
+  }
+})();
 </script>
 </body>
 </html>
