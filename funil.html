@@ -487,9 +487,10 @@ body {
 
 <div class="popup-overlay" id="popupOverlay" style="display:none">
   <div class="popup-box">
-    <p>Isso é apenas uma demonstração. O sistema completo tem qualidade superior e funciona em qualquer site, app ou videochamada!</p>
-    <a class="btn-cta" href="/vendas">Quero por R$ 49,90</a><br>
-    <button class="popup-close" id="popupClose">Continuar testando</button>
+    <p style="font-size:1.1rem;font-weight:700;margin-bottom:8px">Tempo de teste esgotado!</p>
+    <p>Gostou do resultado? O sistema completo tem qualidade muito superior, funciona em qualquer site, app ou videochamada e é seu pra sempre.</p>
+    <a class="btn-cta" href="/vendas" style="margin-top:8px">Quero o TrocaRostoAPP por R$ 49,90</a><br>
+    <button class="popup-close" id="popupClose">Ver mais detalhes</button>
   </div>
 </div>
 
@@ -532,7 +533,7 @@ let blendAmount = 0.85, smoothAmount = 15;
 let frameCount = 0, fpsTimer = 0;
 let modelReady = false, videoMode = false;
 let triIndices = null;
-let popupTimer = null, popupShown = false;
+let demoLockTimer = null, demoLocked = false;
 
 let warpCanvas, warpCtx, maskCanvas, maskCtx, blendCanvas, blendCtx;
 
@@ -803,6 +804,10 @@ document.getElementById('btnStart').addEventListener('click', async () => {
 });
 
 document.getElementById('btnToggle').addEventListener('click', async () => {
+  if (demoLocked) {
+    window.location.href = '/vendas';
+    return;
+  }
   if (!avatarLandmarks || !triIndices) {
     if (!avatarImg) {
       alert('Selecione um avatar primeiro!');
@@ -819,26 +824,23 @@ document.getElementById('btnToggle').addEventListener('click', async () => {
   const btn = document.getElementById('btnToggle');
   btn.textContent = swapActive ? 'TrocaRosto: ON' : 'TrocaRosto: OFF';
   btn.style.borderColor = swapActive ? 'var(--accent)' : 'var(--border)';
-  if (swapActive && !popupShown) {
-    if (popupTimer) clearTimeout(popupTimer);
-    popupTimer = setTimeout(() => {
-      document.getElementById('popupOverlay').style.display = 'flex';
-      popupShown = true;
-    }, 3000);
-  } else if (!swapActive && popupTimer) {
-    clearTimeout(popupTimer);
-    popupTimer = null;
+  if (swapActive && !demoLocked) {
+    if (!demoLockTimer) {
+      demoLockTimer = setTimeout(() => {
+        swapActive = false;
+        running = false;
+        demoLocked = true;
+        if (video && video.srcObject) {
+          video.srcObject.getTracks().forEach(t => t.stop());
+        }
+        document.getElementById('popupOverlay').style.display = 'flex';
+      }, 25000);
+    }
   }
 });
 
 document.getElementById('popupClose').addEventListener('click', () => {
-  document.getElementById('popupOverlay').style.display = 'none';
-  if (video && video.paused) video.play();
-  if (running && !swapActive) {
-    swapActive = true;
-    document.getElementById('btnToggle').textContent = 'TrocaRosto: ON';
-    document.getElementById('btnToggle').style.borderColor = 'var(--accent)';
-  }
+  window.location.href = '/vendas';
 });
 
 document.getElementById('btnScreenshot').addEventListener('click', () => {
