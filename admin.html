@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin - TrocaRostoAPP</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+:root { --bg:#0f1117; --surface:#1a1d27; --surface2:#242836; --border:#2e3345; --fg:#e4e7ef; --fg-dim:#8b8fa3; --accent:#0ea5e9; --green:#22c55e; --red:#ef4444; --yellow:#f59e0b; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { background:var(--bg); color:var(--fg); font-family:'Inter',system-ui,sans-serif; min-height:100vh; }
+.top-bar { display:flex; align-items:center; justify-content:space-between; padding:16px 24px; border-bottom:1px solid var(--border); background:var(--surface); }
+.top-bar h1 { font-size:1.1rem; font-weight:700; }
+.top-bar select, .top-bar input { background:var(--surface2); border:1px solid var(--border); border-radius:8px; color:var(--fg); padding:6px 12px; font-family:inherit; font-size:0.85rem; }
+.container { max-width:1200px; margin:0 auto; padding:24px 16px; }
+.login-box { max-width:360px; margin:80px auto; background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:32px; text-align:center; }
+.login-box h2 { margin-bottom:16px; font-size:1.2rem; }
+.login-box input { width:100%; padding:10px 14px; border-radius:8px; border:1px solid var(--border); background:var(--surface2); color:var(--fg); font-family:inherit; font-size:0.95rem; margin-bottom:12px; }
+.login-box button { width:100%; padding:10px; border-radius:8px; border:none; background:var(--accent); color:#fff; font-family:inherit; font-weight:600; cursor:pointer; }
+.tabs { display:flex; gap:4px; margin-bottom:24px; background:var(--surface); border-radius:10px; padding:4px; width:fit-content; }
+.tab { padding:8px 18px; border-radius:8px; border:none; background:transparent; color:var(--fg-dim); font-family:inherit; font-size:0.85rem; font-weight:600; cursor:pointer; }
+.tab.active { background:var(--accent); color:#fff; }
+.cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin-bottom:28px; }
+.card { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:16px; }
+.card .label { font-size:0.75rem; color:var(--fg-dim); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:4px; }
+.card .value { font-size:1.8rem; font-weight:800; }
+.card .sub { font-size:0.75rem; color:var(--fg-dim); margin-top:2px; }
+.card .value.green { color:var(--green); }
+.card .value.accent { color:var(--accent); }
+.card .value.yellow { color:var(--yellow); }
+.funnel { display:flex; flex-direction:column; gap:6px; margin-bottom:28px; }
+.funnel-step { display:flex; align-items:center; gap:12px; }
+.funnel-bar-wrap { flex:1; height:32px; background:var(--surface2); border-radius:8px; overflow:hidden; position:relative; }
+.funnel-bar { height:100%; border-radius:8px; transition:width 0.6s ease; min-width:2px; }
+.funnel-bar-wrap .bar-label { position:absolute; right:8px; top:50%; transform:translateY(-50%); font-size:0.75rem; font-weight:600; color:var(--fg); }
+.funnel-name { width:120px; font-size:0.8rem; font-weight:600; text-align:right; flex-shrink:0; }
+.funnel-count { width:50px; font-size:0.8rem; font-weight:700; color:var(--fg-dim); }
+.funnel-pct { width:45px; font-size:0.75rem; color:var(--fg-dim); text-align:right; }
+table { width:100%; border-collapse:collapse; font-size:0.85rem; }
+th { text-align:left; padding:10px 12px; font-size:0.75rem; color:var(--fg-dim); text-transform:uppercase; letter-spacing:0.05em; border-bottom:1px solid var(--border); }
+td { padding:10px 12px; border-bottom:1px solid var(--border); }
+tr:hover td { background:var(--surface2); }
+.badge { display:inline-block; padding:2px 8px; border-radius:6px; font-size:0.7rem; font-weight:600; }
+.badge-green { background:rgba(34,197,94,0.15); color:var(--green); }
+.badge-yellow { background:rgba(245,158,11,0.15); color:var(--yellow); }
+.badge-red { background:rgba(239,68,68,0.15); color:var(--red); }
+.badge-blue { background:rgba(14,165,233,0.15); color:var(--accent); }
+.section { margin-bottom:32px; }
+.section h3 { font-size:1rem; font-weight:700; margin-bottom:12px; }
+.utm-gen { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:20px; }
+.utm-gen .row { display:flex; gap:10px; margin-bottom:10px; flex-wrap:wrap; }
+.utm-gen label { font-size:0.75rem; color:var(--fg-dim); display:block; margin-bottom:4px; }
+.utm-gen input { background:var(--surface2); border:1px solid var(--border); border-radius:8px; color:var(--fg); padding:8px 12px; font-family:inherit; font-size:0.85rem; width:100%; }
+.utm-gen .field { flex:1; min-width:140px; }
+.utm-result { background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:10px 14px; font-size:0.8rem; word-break:break-all; color:var(--accent); margin-top:10px; cursor:pointer; }
+.utm-result:hover { background:var(--surface2); }
+.empty { text-align:center; padding:40px; color:var(--fg-dim); font-size:0.9rem; }
+.panel { display:none; }
+.panel.active { display:block; }
+@media(max-width:640px){
+  .cards { grid-template-columns:repeat(2,1fr); }
+  .funnel-name { width:80px; font-size:0.7rem; }
+}
+</style>
+</head>
+<body>
+
+<div id="loginScreen" class="login-box">
+  <h2>Admin TrocaRostoAPP</h2>
+  <input type="password" id="adminKey" placeholder="Chave de acesso">
+  <button onclick="doLogin()">Entrar</button>
+</div>
+
+<div id="app" style="display:none">
+  <div class="top-bar">
+    <h1>TrocaRostoAPP Admin</h1>
+    <div style="display:flex;gap:8px;align-items:center">
+      <select id="daysSelect" onchange="loadData()">
+        <option value="1">Hoje</option>
+        <option value="3">3 dias</option>
+        <option value="7" selected>7 dias</option>
+        <option value="14">14 dias</option>
+        <option value="30">30 dias</option>
+      </select>
+      <button onclick="loadData()" style="background:var(--accent);border:none;color:#fff;padding:6px 14px;border-radius:8px;font-family:inherit;font-weight:600;cursor:pointer;font-size:0.85rem">Atualizar</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="tabs">
+      <button class="tab active" onclick="showTab('overview',this)">Funil</button>
+      <button class="tab" onclick="showTab('leads',this)">Leads</button>
+      <button class="tab" onclick="showTab('utm',this)">UTMs</button>
+      <button class="tab" onclick="showTab('utmgen',this)">Gerar Link</button>
+    </div>
+
+    <!-- OVERVIEW -->
+    <div id="panel-overview" class="panel active">
+      <div class="cards" id="statsCards"></div>
+      <div class="section">
+        <h3>Funil de conversao</h3>
+        <div class="funnel" id="funnelChart"></div>
+      </div>
+    </div>
+
+    <!-- LEADS -->
+    <div id="panel-leads" class="panel">
+      <div class="section">
+        <h3>Leads do dia <select id="leadDateSelect" onchange="loadLeads()" style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;color:var(--fg);padding:4px 8px;font-family:inherit;font-size:0.8rem"></select></h3>
+        <div style="overflow-x:auto">
+          <table>
+            <thead><tr><th>ID</th><th>Email</th><th>Etapas</th><th>Ultima etapa</th><th>Entrada</th><th>Tempo</th></tr></thead>
+            <tbody id="leadsTable"></tbody>
+          </table>
+        </div>
+        <div class="empty" id="leadsEmpty" style="display:none">Nenhum lead ainda para esta data.</div>
+      </div>
+    </div>
+
+    <!-- UTM -->
+    <div id="panel-utm" class="panel">
+      <div class="section">
+        <h3>Performance por UTM</h3>
+        <div style="overflow-x:auto">
+          <table>
+            <thead><tr><th>Source</th><th>Medium</th><th>Campaign</th><th>Content</th><th>Visitas</th><th>Demo</th><th>Checkout</th><th>Vendas</th><th>Conv.</th></tr></thead>
+            <tbody id="utmTable"></tbody>
+          </table>
+        </div>
+        <div class="empty" id="utmEmpty" style="display:none">Nenhum dado de UTM ainda.</div>
+      </div>
+    </div>
+
+    <!-- UTM GENERATOR -->
+    <div id="panel-utmgen" class="panel">
+      <div class="section">
+        <h3>Gerador de Link UTM</h3>
+        <div class="utm-gen">
+          <div class="row">
+            <div class="field">
+              <label>Pagina destino</label>
+              <select id="utmPage" style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--fg);padding:8px 12px;font-family:inherit;font-size:0.85rem;width:100%">
+                <option value="/">Demo (funil)</option>
+                <option value="/vendas">Vendas (checkout)</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Source (origem)</label>
+              <input id="utmSource" placeholder="facebook, google, tiktok">
+            </div>
+          </div>
+          <div class="row">
+            <div class="field">
+              <label>Medium (meio)</label>
+              <input id="utmMedium" placeholder="cpc, stories, reels">
+            </div>
+            <div class="field">
+              <label>Campaign (campanha)</label>
+              <input id="utmCampaign" placeholder="lancamento-v2, retargeting">
+            </div>
+          </div>
+          <div class="row">
+            <div class="field">
+              <label>Content (criativo)</label>
+              <input id="utmContent" placeholder="video-demo-25s, carrossel-antes-depois">
+            </div>
+          </div>
+          <div class="utm-result" id="utmResult" onclick="copyUtm()" title="Clique para copiar">
+            Preencha os campos acima...
+          </div>
+          <p style="font-size:0.7rem;color:var(--fg-dim);margin-top:6px" id="utmCopied"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+let adminKey = '';
+const BASE_URL = 'https://troca-rosto-app.vercel.app';
+const STEPS_LABELS = {
+  page_view: 'Pagina vista',
+  demo_start: 'Webcam ligada',
+  swap_on: 'TrocaRosto ON',
+  demo_locked: 'Demo travou',
+  checkout_view: 'Viu checkout',
+  form_filled: 'Preencheu form',
+  pix_generated: 'PIX gerado',
+  sale: 'Venda'
+};
+const STEP_COLORS = {
+  page_view: '#6366f1',
+  demo_start: '#0ea5e9',
+  swap_on: '#06b6d4',
+  demo_locked: '#f59e0b',
+  checkout_view: '#8b5cf6',
+  form_filled: '#ec4899',
+  pix_generated: '#f97316',
+  sale: '#22c55e'
+};
+
+function doLogin() {
+  adminKey = document.getElementById('adminKey').value;
+  if (!adminKey) return;
+  localStorage.setItem('troca_admin_key', adminKey);
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  loadData();
+}
+
+(function() {
+  const saved = localStorage.getItem('troca_admin_key');
+  if (saved) { adminKey = saved; doLogin(); }
+})();
+
+function showTab(name, el) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + name).classList.add('active');
+  el.classList.add('active');
+  if (name === 'leads') loadLeads();
+  if (name === 'utm') loadUtm();
+}
+
+async function api(action, params) {
+  const days = document.getElementById('daysSelect').value;
+  const qs = new URLSearchParams({ action, days, key: adminKey, ...params });
+  const res = await fetch('/api/admin-data?' + qs);
+  if (res.status === 401) { alert('Chave invalida'); localStorage.removeItem('troca_admin_key'); location.reload(); return null; }
+  return res.json();
+}
+
+async function loadData() {
+  const data = await api('overview');
+  if (!data) return;
+  renderStats(data);
+  renderFunnel(data);
+  populateDateSelect(data.dates);
+}
+
+function renderStats(data) {
+  const t = data.totals;
+  const views = t.page_view || 0;
+  const sales = t.sale || 0;
+  const pix = t.pix_generated || 0;
+  const conv = views > 0 ? ((sales / views) * 100).toFixed(1) : '0.0';
+  const revenue = sales * 49.90;
+
+  document.getElementById('statsCards').innerHTML = `
+    <div class="card"><div class="label">Visitantes</div><div class="value accent">${views}</div></div>
+    <div class="card"><div class="label">Demo ativada</div><div class="value">${t.swap_on||0}</div><div class="sub">${views?((t.swap_on||0)/views*100).toFixed(0):'0'}% dos visitantes</div></div>
+    <div class="card"><div class="label">Checkout</div><div class="value">${t.checkout_view||0}</div><div class="sub">${views?((t.checkout_view||0)/views*100).toFixed(0):'0'}% dos visitantes</div></div>
+    <div class="card"><div class="label">PIX gerado</div><div class="value yellow">${pix}</div><div class="sub">${views?((pix/views)*100).toFixed(1):'0'}%</div></div>
+    <div class="card"><div class="label">Vendas</div><div class="value green">${sales}</div><div class="sub">${conv}% conv.</div></div>
+    <div class="card"><div class="label">Receita</div><div class="value green">R$ ${revenue.toFixed(2).replace('.',',')}</div></div>
+  `;
+}
+
+function renderFunnel(data) {
+  const t = data.totals;
+  const max = Math.max(...Object.values(t), 1);
+  const steps = data.steps;
+  let html = '';
+  steps.forEach((step, i) => {
+    const count = t[step] || 0;
+    const pct = max > 0 ? (count / max * 100) : 0;
+    const dropoff = i > 0 ? (t[steps[i-1]] > 0 ? ((1 - count / t[steps[i-1]]) * 100).toFixed(0) : '0') : null;
+    html += `<div class="funnel-step">
+      <div class="funnel-name">${STEPS_LABELS[step]||step}</div>
+      <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:${pct}%;background:${STEP_COLORS[step]||'#666'}"></div><div class="bar-label">${dropoff !== null && count > 0 ? '-'+dropoff+'%' : ''}</div></div>
+      <div class="funnel-count">${count}</div>
+    </div>`;
+  });
+  document.getElementById('funnelChart').innerHTML = html;
+}
+
+function populateDateSelect(dates) {
+  const sel = document.getElementById('leadDateSelect');
+  sel.innerHTML = dates.map(d => `<option value="${d}">${d}</option>`).join('');
+}
+
+async function loadLeads() {
+  const date = document.getElementById('leadDateSelect').value;
+  if (!date) return;
+  const data = await api('leads', { date });
+  if (!data) return;
+  const tbody = document.getElementById('leadsTable');
+  if (!data.leads || data.leads.length === 0) {
+    tbody.innerHTML = '';
+    document.getElementById('leadsEmpty').style.display = 'block';
+    return;
+  }
+  document.getElementById('leadsEmpty').style.display = 'none';
+  tbody.innerHTML = data.leads.map(l => {
+    const badge = l.lastStep === 'sale' ? 'badge-green' : l.lastStep === 'pix_generated' ? 'badge-yellow' : l.lastStep === 'checkout_view' ? 'badge-blue' : 'badge-red';
+    return `<tr>
+      <td style="font-family:monospace;font-size:0.8rem">${l.vid}</td>
+      <td>${l.email || '<span style="color:var(--fg-dim)">-</span>'}</td>
+      <td>${l.events.length}</td>
+      <td><span class="badge ${badge}">${STEPS_LABELS[l.lastStep]||l.lastStep}</span></td>
+      <td>${l.enteredAt}</td>
+      <td>${l.duration}</td>
+    </tr>`;
+  }).join('');
+}
+
+async function loadUtm() {
+  const data = await api('utm');
+  if (!data) return;
+  const tbody = document.getElementById('utmTable');
+  const entries = Object.entries(data.utmTotals).sort((a,b) => b[1]-a[1]);
+  if (entries.length === 0) {
+    tbody.innerHTML = '';
+    document.getElementById('utmEmpty').style.display = 'block';
+    return;
+  }
+  document.getElementById('utmEmpty').style.display = 'none';
+  tbody.innerHTML = entries.map(([key, total]) => {
+    const [source, medium, campaign, content] = key.split('|');
+    const f = data.utmFunnels[key] || {};
+    const sales = f.sale || 0;
+    const conv = total > 0 ? ((sales/total)*100).toFixed(1) : '0.0';
+    return `<tr>
+      <td><strong>${source||'-'}</strong></td>
+      <td>${medium||'-'}</td>
+      <td>${campaign||'-'}</td>
+      <td>${content||'-'}</td>
+      <td>${total}</td>
+      <td>${f.swap_on||0}</td>
+      <td>${f.checkout_view||0}</td>
+      <td style="color:var(--green);font-weight:700">${sales}</td>
+      <td>${conv}%</td>
+    </tr>`;
+  }).join('');
+}
+
+// UTM Generator
+['utmPage','utmSource','utmMedium','utmCampaign','utmContent'].forEach(id => {
+  document.getElementById(id).addEventListener('input', updateUtmLink);
+});
+
+function updateUtmLink() {
+  const page = document.getElementById('utmPage').value;
+  const source = document.getElementById('utmSource').value.trim();
+  const medium = document.getElementById('utmMedium').value.trim();
+  const campaign = document.getElementById('utmCampaign').value.trim();
+  const content = document.getElementById('utmContent').value.trim();
+  if (!source) { document.getElementById('utmResult').textContent = 'Preencha pelo menos o Source...'; return; }
+  const params = new URLSearchParams();
+  if (source) params.set('utm_source', source);
+  if (medium) params.set('utm_medium', medium);
+  if (campaign) params.set('utm_campaign', campaign);
+  if (content) params.set('utm_content', content);
+  document.getElementById('utmResult').textContent = BASE_URL + page + '?' + params.toString();
+}
+
+function copyUtm() {
+  const text = document.getElementById('utmResult').textContent;
+  if (text.startsWith('Preencha')) return;
+  navigator.clipboard.writeText(text).then(() => {
+    document.getElementById('utmCopied').textContent = 'Link copiado!';
+    setTimeout(() => { document.getElementById('utmCopied').textContent = ''; }, 2000);
+  });
+}
+</script>
+</body>
+</html>

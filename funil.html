@@ -801,6 +801,7 @@ document.getElementById('btnStart').addEventListener('click', async () => {
   await ensureVideoMode();
   await startWebcam();
   btn.textContent = 'Webcam Ativa';
+  if(window._trk) window._trk('demo_start');
 });
 
 document.getElementById('btnToggle').addEventListener('click', async () => {
@@ -824,12 +825,14 @@ document.getElementById('btnToggle').addEventListener('click', async () => {
   const btn = document.getElementById('btnToggle');
   btn.textContent = swapActive ? 'TrocaRosto: ON' : 'TrocaRosto: OFF';
   btn.style.borderColor = swapActive ? 'var(--accent)' : 'var(--border)';
+  if (swapActive && window._trk) window._trk('swap_on');
   if (swapActive && !demoLocked) {
     if (!demoLockTimer) {
       demoLockTimer = setTimeout(() => {
         swapActive = false;
         running = false;
         demoLocked = true;
+        if (window._trk) window._trk('demo_locked');
         if (video && video.srcObject) {
           video.srcObject.getTracks().forEach(t => t.stop());
         }
@@ -904,6 +907,18 @@ document.getElementById('smoothSlider').addEventListener('input', e => {
     layer.style.cssText = 'position:absolute;inset:0;backdrop-filter:blur('+blurs[i]+'px);-webkit-backdrop-filter:blur('+blurs[i]+'px);mask-image:'+mask+';-webkit-mask-image:'+mask;
     container.appendChild(layer);
   }
+})();
+
+// Tracking
+(function(){
+  function vid(){ var v=localStorage.getItem('trk_vid'); if(!v){v=crypto.randomUUID();localStorage.setItem('trk_vid',v)} return v; }
+  function utm(){ var p=new URLSearchParams(location.search); var u={source:p.get('utm_source'),medium:p.get('utm_medium'),campaign:p.get('utm_campaign'),content:p.get('utm_content')}; if(u.source){localStorage.setItem('trk_utm',JSON.stringify(u))} else {try{u=JSON.parse(localStorage.getItem('trk_utm'))||{}}catch(e){u={}}} return u.source?u:null; }
+  window._trk = function(event,extra){
+    var body = {event:event,vid:vid(),utm:utm()};
+    if(extra) Object.assign(body,extra);
+    fetch('/api/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}).catch(function(){});
+  };
+  window._trk('page_view');
 })();
 </script>
 </body>

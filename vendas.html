@@ -888,6 +888,18 @@ h1 span {
     if(Math.random()>0.6) { base++; el.textContent = base; }
   }, 30000);
 })();
+
+// Tracking
+(function(){
+  function vid(){ var v=localStorage.getItem('trk_vid'); if(!v){v=crypto.randomUUID();localStorage.setItem('trk_vid',v)} return v; }
+  function utm(){ var p=new URLSearchParams(location.search); var u={source:p.get('utm_source'),medium:p.get('utm_medium'),campaign:p.get('utm_campaign'),content:p.get('utm_content')}; if(u.source){localStorage.setItem('trk_utm',JSON.stringify(u))} else {try{u=JSON.parse(localStorage.getItem('trk_utm'))||{}}catch(e){u={}}} return u.source?u:null; }
+  window._trk = function(event,extra){
+    var body = {event:event,vid:vid(),utm:utm()};
+    if(extra) Object.assign(body,extra);
+    fetch('/api/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}).catch(function(){});
+  };
+  window._trk('checkout_view');
+})();
 </script>
 </body>
 </html>

@@ -1,10 +1,20 @@
 {
   "version": 2,
   "builds": [
+    { "src": "api/create-pix.js", "use": "@vercel/node" },
+    { "src": "api/check-pix.js", "use": "@vercel/node" },
+    { "src": "api/track.js", "use": "@vercel/node" },
+    { "src": "api/admin-data.js", "use": "@vercel/node" },
     { "src": "*.html", "use": "@vercel/static" },
+    { "src": "vendas-app.js", "use": "@vercel/static" },
     { "src": "avatars/**", "use": "@vercel/static" }
   ],
   "routes": [
+    { "src": "/api/create-pix", "dest": "/api/create-pix.js" },
+    { "src": "/api/check-pix", "dest": "/api/check-pix.js" },
+    { "src": "/api/track", "dest": "/api/track.js" },
+    { "src": "/api/admin-data", "dest": "/api/admin-data.js" },
+    { "src": "/admin", "dest": "/admin.html" },
     { "src": "/funil", "dest": "/funil.html" },
     { "src": "/vendas", "dest": "/vendas.html" },
     { "src": "/demo", "dest": "/demo.html" },
