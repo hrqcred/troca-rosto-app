@@ -11,22 +11,21 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TrocaRostoAPP - Garanta o Seu</title>
+<title>TrocaRosto - Garantir acesso</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
 :root {
-  --bg: #f5f7fa;
-  --surface: #ffffff;
-  --surface2: #eef1f6;
-  --border: #dde1e8;
-  --fg: #1a1d26;
-  --fg-dim: #6b7280;
-  --accent: #0ea5e9;
-  --accent2: #06b6d4;
+  --bg: #09090b;
+  --surface: #131316;
+  --surface2: #1a1a1f;
+  --border: #232329;
+  --fg: #e4e4e7;
+  --fg-dim: #71717a;
+  --accent: #22d3ee;
+  --accent-dim: rgba(34, 211, 238, 0.08);
+  --accent-glow: rgba(34, 211, 238, 0.12);
   --green: #22c55e;
-  --green2: #16a34a;
-  --glow: rgba(14, 165, 233, 0.15);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -36,183 +35,204 @@ body {
   color: var(--fg);
   font-family: 'Inter', system-ui, sans-serif;
   min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
 }
 
 .container {
-  max-width: 640px;
+  max-width: 560px;
   margin: 0 auto;
-  padding: 40px 16px 60px;
+  padding: 40px 16px 80px;
 }
 
-.badge {
-  display: inline-block;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  color: white;
-  font-size: 0.75rem;
-  font-weight: 700;
-  padding: 4px 14px;
-  border-radius: 20px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 16px;
-}
-
-h1 {
-  font-size: clamp(1.8rem, 5vw, 2.6rem);
-  font-weight: 900;
-  line-height: 1.15;
-  margin-bottom: 16px;
-}
-h1 span {
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.subtitle {
-  font-size: 1.05rem;
-  color: var(--fg-dim);
-  line-height: 1.7;
-  margin-bottom: 32px;
-}
-
-.benefits {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-bottom: 36px;
-}
-.benefit {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 16px;
-}
-.benefit-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  background: var(--surface2);
+/* ── NAV ── */
+.nav {
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-  flex-shrink: 0;
+  justify-content: space-between;
+  padding: 20px 24px;
+  max-width: 560px;
+  margin: 0 auto;
 }
-.benefit h4 {
-  font-size: 0.95rem;
-  font-weight: 700;
-  margin-bottom: 2px;
-}
-.benefit p {
+.nav-brand {
   font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--fg);
+  letter-spacing: -0.02em;
+}
+.nav-brand span { color: var(--accent); }
+.nav-link {
+  font-size: 0.78rem;
+  color: var(--fg-dim);
+  text-decoration: none;
+  font-weight: 500;
+}
+.nav-link:hover { color: var(--fg); }
+
+/* ── HERO ── */
+.sales-hero {
+  margin-bottom: 48px;
+}
+.sales-hero h1 {
+  font-size: clamp(1.6rem, 4.5vw, 2.2rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin-bottom: 16px;
+}
+.sales-hero .subtitle {
+  font-size: 1rem;
+  color: var(--fg-dim);
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+/* ── WHAT YOU GET ── */
+.what-you-get {
+  margin-bottom: 48px;
+}
+.what-you-get h2 {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--fg-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 20px;
+}
+.get-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.get-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+.get-item:first-child { border-radius: 12px 12px 0 0; }
+.get-item:last-child { border-radius: 0 0 12px 12px; }
+.get-item svg {
+  flex-shrink: 0;
+  color: var(--accent);
+  margin-top: 2px;
+  opacity: 0.7;
+}
+.get-item h4 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 3px;
+  letter-spacing: -0.01em;
+}
+.get-item p {
+  font-size: 0.8rem;
   color: var(--fg-dim);
   line-height: 1.5;
 }
 
-.pricing-card {
-  background: var(--surface);
-  border: 2px solid var(--accent);
-  border-radius: 20px;
-  padding: 32px 24px;
-  text-align: center;
-  margin-bottom: 24px;
-  box-shadow: 0 4px 30px var(--glow);
-  position: relative;
-  overflow: hidden;
+/* ── HOW IT WORKS ── */
+.how-section {
+  margin-bottom: 48px;
 }
-.pricing-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--accent), var(--accent2), var(--green));
+.how-section h2 {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--fg-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 20px;
+}
+.how-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.how-step {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.step-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+.how-step h4 {
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+.how-step p {
+  font-size: 0.78rem;
+  color: var(--fg-dim);
+  line-height: 1.5;
 }
 
+/* ── PRICING CARD ── */
+.pricing-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 36px 28px;
+  margin-bottom: 24px;
+  position: relative;
+}
+.pricing-header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 4px;
+}
 .old-price {
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   color: var(--fg-dim);
   text-decoration: line-through;
-  margin-bottom: 4px;
 }
 .price-tag {
-  font-size: 3rem;
+  font-size: 2.6rem;
   font-weight: 900;
-  color: var(--accent);
-  margin-bottom: 4px;
+  letter-spacing: -0.03em;
 }
 .price-tag small {
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: var(--fg-dim);
 }
 .price-note {
-  font-size: 0.85rem;
-  color: var(--fg-dim);
-  margin-bottom: 24px;
-}
-
-.btn-buy {
-  display: block;
-  width: 100%;
-  padding: 16px;
-  border-radius: 14px;
-  border: none;
-  background: linear-gradient(135deg, var(--green), var(--green2));
-  color: white;
-  font-family: inherit;
-  font-size: 1.1rem;
-  font-weight: 800;
-  cursor: pointer;
-  transition: all 0.2s;
-  text-decoration: none;
-  text-align: center;
-  margin-bottom: 12px;
-}
-.btn-buy:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(34, 197, 94, 0.3);
-}
-.btn-buy:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  transform: none;
-}
-
-.guarantee {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
   font-size: 0.8rem;
   color: var(--fg-dim);
-  margin-bottom: 32px;
+  margin-bottom: 28px;
 }
 
 .checkout-form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
   margin-bottom: 20px;
-  text-align: left;
 }
 .checkout-form label {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: var(--fg-dim);
+  margin-bottom: -8px;
 }
 .checkout-form input {
   width: 100%;
-  padding: 12px 14px;
+  padding: 13px 14px;
   border-radius: 10px;
   border: 1px solid var(--border);
   font-family: inherit;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   background: var(--bg);
   color: var(--fg);
   outline: none;
@@ -221,24 +241,51 @@ h1 span {
 .checkout-form input:focus {
   border-color: var(--accent);
 }
-.field-group {
-  display: flex;
-  gap: 12px;
+.checkout-form input::placeholder {
+  color: #3f3f46;
 }
-.field-group > div { flex: 1; }
 
+.btn-buy {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  border: none;
+  background: var(--accent);
+  color: #09090b;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+}
+.btn-buy:hover { opacity: 0.85; }
+.btn-buy:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.guarantee {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  color: var(--fg-dim);
+}
+.guarantee svg { flex-shrink: 0; opacity: 0.5; }
+
+/* ── PIX SCREEN ── */
 .pix-screen {
   display: none;
   text-align: center;
 }
 .pix-screen.active { display: block; }
 .pix-qr {
-  background: white;
-  border-radius: 16px;
-  padding: 24px;
+  background: #fff;
+  border-radius: 14px;
+  padding: 20px;
   display: inline-block;
   margin: 16px 0;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
 }
 .pix-qr canvas { display: block; }
 .pix-code-box {
@@ -247,12 +294,13 @@ h1 span {
   border-radius: 10px;
   padding: 12px;
   margin: 12px 0;
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   word-break: break-all;
   color: var(--fg-dim);
-  max-height: 80px;
+  max-height: 70px;
   overflow-y: auto;
   text-align: left;
+  font-family: monospace;
 }
 .btn-copy {
   padding: 10px 20px;
@@ -262,29 +310,32 @@ h1 span {
   color: var(--accent);
   font-family: inherit;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   cursor: pointer;
   transition: all 0.2s;
   margin-bottom: 16px;
 }
-.btn-copy:hover { background: var(--accent); color: white; }
+.btn-copy:hover { background: var(--accent); color: #09090b; }
 
 .pix-status {
   padding: 12px;
   border-radius: 10px;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   margin-top: 12px;
 }
 .pix-status.pending {
-  background: #fef3c7;
-  color: #92400e;
+  background: rgba(234, 179, 8, 0.1);
+  color: #eab308;
+  border: 1px solid rgba(234, 179, 8, 0.2);
 }
 .pix-status.completed {
-  background: #dcfce7;
-  color: #166534;
+  background: rgba(34, 197, 94, 0.1);
+  color: var(--green);
+  border: 1px solid rgba(34, 197, 94, 0.2);
 }
 
+/* ── SUCCESS SCREEN ── */
 .success-screen {
   display: none;
   text-align: center;
@@ -292,67 +343,90 @@ h1 span {
 }
 .success-screen.active { display: block; }
 .success-icon {
-  width: 80px;
-  height: 80px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--green), var(--green2));
+  background: var(--green);
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 20px;
 }
 .success-screen h2 {
-  font-size: 1.4rem;
-  margin-bottom: 12px;
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+  letter-spacing: -0.02em;
 }
 .success-screen p {
   color: var(--fg-dim);
   line-height: 1.7;
   margin-bottom: 20px;
+  font-size: 0.9rem;
 }
+.btn-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent);
+  color: #09090b;
+  padding: 14px 28px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  margin-bottom: 16px;
+  transition: opacity 0.2s;
+}
+.btn-download:hover { opacity: 0.85; }
 .btn-wpp {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 14px 28px;
-  border-radius: 12px;
+  padding: 12px 24px;
+  border-radius: 10px;
   background: #25d366;
   color: white;
   font-family: inherit;
-  font-size: 1rem;
-  font-weight: 700;
+  font-size: 0.9rem;
+  font-weight: 600;
   text-decoration: none;
-  transition: all 0.2s;
+  transition: opacity 0.2s;
 }
-.btn-wpp:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,211,102,0.3); }
+.btn-wpp:hover { opacity: 0.85; }
 
+/* ── FAQ ── */
 .faq {
-  margin-top: 32px;
+  margin-top: 48px;
 }
 .faq h3 {
-  font-size: 1.1rem;
-  font-weight: 700;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--fg-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
   margin-bottom: 16px;
 }
 .faq-item {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 12px;
-  margin-bottom: 8px;
+  border-radius: 10px;
+  margin-bottom: 6px;
   overflow: hidden;
 }
 .faq-q {
   padding: 14px 16px;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  user-select: none;
 }
 .faq-q::after {
   content: '+';
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: var(--fg-dim);
   transition: transform 0.2s;
 }
@@ -364,7 +438,7 @@ h1 span {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s, padding 0.3s;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: var(--fg-dim);
   line-height: 1.6;
 }
@@ -373,346 +447,144 @@ h1 span {
   padding: 0 16px 14px;
 }
 
+/* ── FOOTER ── */
 .footer {
   text-align: center;
-  margin-top: 40px;
-  font-size: 0.75rem;
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  font-size: 0.7rem;
   color: var(--fg-dim);
 }
 
-.raspadinha-section {
-  margin-bottom: 32px;
-  text-align: center;
-}
-.raspadinha-label {
-  font-size: 0.9rem;
-  color: var(--fg-dim);
-  margin-bottom: 12px;
-}
-.raspadinha-container {
-  position: relative;
-  width: 280px;
-  height: 100px;
-  margin: 0 auto;
-  border-radius: 14px;
-  overflow: hidden;
-  cursor: pointer;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-}
-.raspadinha-prize {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #fef9c3, #fde68a);
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: #b45309;
-}
-.raspadinha-cover {
-  position: absolute;
-  inset: 0;
-}
-.raspadinha-cover canvas {
-  width: 100%;
-  height: 100%;
-}
-.raspadinha-result {
-  display: none;
-  text-align: center;
-  margin-top: 12px;
-  font-weight: 700;
-  color: var(--green2);
-  font-size: 0.95rem;
-}
-
+/* ── SPINNER ── */
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
 .spinner {
-  width: 20px;
-  height: 20px;
-  border: 3px solid rgba(255,255,255,0.3);
-  border-top-color: white;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(9,9,11,0.2);
+  border-top-color: #09090b;
   border-radius: 50%;
-  animation: spin 0.8s linear infinite;
+  animation: spin 0.7s linear infinite;
   display: inline-block;
   vertical-align: middle;
   margin-right: 8px;
-}
-
-/* Social proof ticker */
-.social-proof-bar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 998;
-  pointer-events: none;
-}
-.social-proof-toast {
-  position: fixed;
-  bottom: 20px;
-  left: 16px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 12px 16px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
-  font-size: 0.82rem;
-  color: var(--fg);
-  transform: translateY(120%);
-  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  pointer-events: auto;
-  max-width: 320px;
-  z-index: 998;
-}
-.social-proof-toast.show { transform: translateY(0); }
-.social-proof-toast .toast-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--green), var(--green2));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  color: white;
-  font-size: 0.9rem;
-}
-.social-proof-toast strong { color: var(--fg); }
-.social-proof-toast .toast-time {
-  font-size: 0.7rem;
-  color: var(--fg-dim);
-  margin-top: 2px;
-}
-
-/* Urgency counter */
-.urgency-bar {
-  background: linear-gradient(135deg, #fef3c7, #fde68a);
-  border: 1px solid #f59e0b;
-  border-radius: 12px;
-  padding: 12px 16px;
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #92400e;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-.urgency-bar .countdown {
-  font-weight: 800;
-  font-size: 1rem;
-  color: #b45309;
-  font-variant-numeric: tabular-nums;
-}
-
-/* Pulse animation for CTA */
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3); }
-  50% { box-shadow: 0 4px 30px rgba(34, 197, 94, 0.5), 0 0 60px rgba(34, 197, 94, 0.15); }
-}
-.btn-buy { animation: pulse-glow 2.5s ease-in-out infinite; }
-
-
-/* Trust badges */
-.trust-badges {
-  display: flex;
-  justify-content: center;
-  gap: 24px;
-  margin-bottom: 28px;
-  flex-wrap: wrap;
-}
-.trust-badge {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.78rem;
-  color: var(--fg-dim);
-  font-weight: 500;
-}
-.trust-badge svg { flex-shrink: 0; }
-
-/* Video testimonial placeholder */
-.video-section {
-  margin-bottom: 32px;
-  text-align: center;
-}
-.video-section h3 {
-  font-size: 1.1rem;
-  font-weight: 700;
-  margin-bottom: 16px;
-}
-.video-embed {
-  position: relative;
-  width: 100%;
-  border-radius: 16px;
-  overflow: hidden;
-  aspect-ratio: 16/9;
-  background: #000;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.1);
-}
-.video-embed iframe {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
-/* Buyers counter */
-.buyers-counter {
-  text-align: center;
-  margin-bottom: 24px;
-  font-size: 0.85rem;
-  color: var(--fg-dim);
-}
-.buyers-counter strong {
-  color: var(--accent);
-  font-weight: 800;
 }
 </style>
 </head>
 <body>
 
+<nav class="nav">
+  <a class="nav-brand" href="/" style="text-decoration:none">Troca<span>Rosto</span></a>
+  <a class="nav-link" href="/">Voltar ao demo</a>
+</nav>
+
 <div class="container">
-  <div class="sr" data-dir="down" data-delay="0">
-    <span class="badge">Oferta especial</span>
-  </div>
 
-  <div class="sr" data-dir="left" data-delay="100">
-    <h1>Troque de rosto em <span>qualquer</span> videochamada, site ou aplicativo</h1>
-  </div>
+  <section class="sales-hero sr" data-dir="up" data-delay="0">
+    <h1>O sistema completo de troca de rosto em tempo real</h1>
+    <p class="subtitle">Instala no seu computador, liga a webcam e qualquer videochamada, site ou aplicativo passa a ver o rosto que voce escolher. Funciona ao vivo, sem travamento.</p>
+  </section>
 
-  <div class="sr" data-dir="left" data-delay="200">
-    <p class="subtitle">
-      O TrocaRostoAPP funciona em tempo real. Use no Zoom, Google Meet, em sites de verificação, aplicativos e qualquer plataforma que use câmera.
-    </p>
-  </div>
-
-  <div class="sr" data-dir="up" data-delay="300">
-    <div class="trust-badges">
-      <div class="trust-badge">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        Pagamento seguro
-      </div>
-      <div class="trust-badge">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-        Acesso imediato
-      </div>
-      <div class="trust-badge">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        +2.400 clientes
-      </div>
-    </div>
-  </div>
-
-  <div class="sr" data-dir="up" data-delay="150">
-    <div class="buyers-counter">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      <strong id="buyerCount">47</strong> pessoas compraram nas ultimas 24h
-    </div>
-  </div>
-
-  <div class="sr" data-dir="up" data-delay="200">
-    <div class="raspadinha-section">
-    <p class="raspadinha-label">Raspe e descubra seu desconto:</p>
-    <div class="raspadinha-container" id="raspadinha">
-      <div class="raspadinha-prize">CUPOM: 10% OFF</div>
-      <div class="raspadinha-cover">
-        <canvas id="scratchCanvas"></canvas>
-      </div>
-    </div>
-    <p class="raspadinha-result" id="raspadinhaResult">Parabéns! Você ganhou 10% de desconto!</p>
-  </div>
-  </div>
-
-  <div class="benefits">
-    <div class="sr" data-dir="up" data-delay="0">
-      <div class="benefit">
-        <div class="benefit-icon">📹</div>
+  <section class="what-you-get sr" data-dir="up" data-delay="100">
+    <h2>O que voce recebe</h2>
+    <div class="get-list">
+      <div class="get-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"/></svg>
         <div>
           <h4>Funciona em videochamadas</h4>
-          <p>Zoom, Google Meet, Teams, WhatsApp Web e qualquer plataforma de vídeo</p>
+          <p>Zoom, Google Meet, Teams, Discord, WhatsApp Web. Qualquer plataforma que use webcam.</p>
         </div>
       </div>
-    </div>
-    <div class="sr" data-dir="up" data-delay="100">
-      <div class="benefit">
-        <div class="benefit-icon">🌐</div>
+      <div class="get-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
         <div>
           <h4>Sites e aplicativos</h4>
-          <p>Use em qualquer site ou app que peça acesso à câmera</p>
+          <p>Qualquer site ou app que peca acesso a camera funciona com o TrocaRosto.</p>
         </div>
       </div>
-    </div>
-    <div class="sr" data-dir="up" data-delay="200">
-      <div class="benefit">
-        <div class="benefit-icon">⚡</div>
+      <div class="get-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         <div>
           <h4>Tempo real, sem delay</h4>
-          <p>Troca instantânea do rosto que acompanha seus movimentos naturalmente</p>
+          <p>A troca acompanha seus movimentos naturalmente. Ninguem percebe.</p>
         </div>
       </div>
-    </div>
-    <div class="sr" data-dir="up" data-delay="300">
-      <div class="benefit">
-        <div class="benefit-icon">🎓</div>
+      <div class="get-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
         <div>
-          <h4>Passo a passo completo</h4>
-          <p>Ensinamos a instalar e usar na prática em qualquer situação</p>
+          <h4>Tutorial completo</h4>
+          <p>Passo a passo pra instalar e usar em qualquer situacao. Windows e Mac.</p>
         </div>
       </div>
     </div>
-  </div>
+  </section>
+
+  <section class="how-section sr" data-dir="up" data-delay="100">
+    <h2>Como funciona</h2>
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="step-num">1</div>
+        <div>
+          <h4>Baixa e instala</h4>
+          <p>Apos o pagamento voce baixa o sistema direto na tela. Instalacao em menos de 5 minutos.</p>
+        </div>
+      </div>
+      <div class="how-step">
+        <div class="step-num">2</div>
+        <div>
+          <h4>Escolhe o rosto</h4>
+          <p>Usa qualquer foto de rosto que quiser. O sistema aceita qualquer imagem.</p>
+        </div>
+      </div>
+      <div class="how-step">
+        <div class="step-num">3</div>
+        <div>
+          <h4>Liga e usa</h4>
+          <p>Abre o TrocaRosto, liga a webcam e entra na videochamada ou site normalmente.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- FORM SCREEN -->
   <div id="formScreen">
     <div class="sr" data-dir="up" data-delay="0">
-      <div class="urgency-bar">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
-        Oferta expira em <span class="countdown" id="countdown">14:59</span>
-      </div>
-    </div>
-    <div class="sr" data-dir="up" data-delay="150">
-    <div class="pricing-card">
-      <p class="old-price">De R$ 197,00</p>
-      <p class="price-tag" id="priceTag">R$ 49<small>,90</small></p>
-      <p class="price-note">Pagamento único via PIX. Acesso vitalício.</p>
-
-      <div class="checkout-form">
-        <div>
-          <label>Nome completo</label>
-          <input type="text" id="inputName" placeholder="Seu nome">
+      <div class="pricing-card">
+        <div class="pricing-header">
+          <span class="old-price">R$ 197</span>
         </div>
-        <div>
-          <label>E-mail</label>
-          <input type="email" id="inputEmail" placeholder="seu@email.com">
+        <p class="price-tag" id="priceTag">R$ 49<small>,90</small></p>
+        <p class="price-note">Pagamento unico. Acesso vitalicio. Sem mensalidade.</p>
+
+        <div class="checkout-form">
+          <div>
+            <label>Nome completo</label>
+            <input type="text" id="inputName" placeholder="Seu nome">
+          </div>
+          <div>
+            <label>E-mail</label>
+            <input type="email" id="inputEmail" placeholder="seu@email.com">
+          </div>
+        </div>
+
+        <button class="btn-buy" id="btnPay">Pagar R$ 49,90 via PIX</button>
+
+        <div class="guarantee">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          7 dias de garantia incondicional
         </div>
       </div>
-
-      <button class="btn-buy" id="btnPay">PAGAR <span id="btnPriceText">R$ 49,90</span> VIA PIX</button>
-
-      <div class="guarantee">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        7 dias de garantia incondicional
-      </div>
-    </div>
     </div>
   </div>
 
   <!-- PIX SCREEN -->
   <div class="pix-screen" id="pixScreen">
     <div class="pricing-card">
-      <h3 style="margin-bottom:4px">Pague via PIX</h3>
-      <p class="price-note">Escaneie o QR Code ou copie o código</p>
+      <h3 style="font-size:1.1rem;font-weight:800;margin-bottom:4px;letter-spacing:-0.02em">Pague via PIX</h3>
+      <p class="price-note">Escaneie o QR Code ou copie o codigo</p>
 
       <div class="pix-qr">
         <canvas id="qrCanvas" width="200" height="200"></canvas>
@@ -720,10 +592,10 @@ h1 span {
 
       <div class="pix-code-box" id="pixCodeBox"></div>
 
-      <button class="btn-copy" id="btnCopy">Copiar código PIX</button>
+      <button class="btn-copy" id="btnCopy">Copiar codigo PIX</button>
 
       <div class="pix-status pending" id="pixStatus">
-        <span class="spinner"></span> Aguardando pagamento...
+        <span class="spinner" style="border-color:rgba(234,179,8,0.3);border-top-color:#eab308"></span> Aguardando pagamento...
       </div>
     </div>
   </div>
@@ -731,17 +603,17 @@ h1 span {
   <!-- SUCCESS SCREEN -->
   <div class="success-screen" id="successScreen">
     <div class="success-icon">
-      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
     </div>
-    <h2>Pagamento confirmado!</h2>
-    <p>Seu TrocaRostoAPP está pronto! Clique abaixo para baixar o sistema completo.</p>
-    <a class="btn-download" id="btnDownload" href="#" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#0ea5e9,#06b6d4);color:#fff;padding:16px 32px;border-radius:12px;font-weight:700;font-size:1.1rem;text-decoration:none;margin-bottom:12px;transition:transform .2s">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-      Baixar TrocaRostoAPP
+    <h2>Pagamento confirmado</h2>
+    <p>Seu TrocaRosto esta pronto. Clique abaixo para baixar o sistema completo.</p>
+    <a class="btn-download" id="btnDownload" href="#" target="_blank">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Baixar TrocaRosto
     </a>
-    <p style="font-size:0.85rem;color:#64748b;margin-top:8px">Dúvidas? Fale conosco:</p>
-    <a class="btn-wpp" href="https://wa.me/5563999147717?text=Paguei%20o%20TrocaRostoAPP%20e%20preciso%20de%20ajuda" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:#25d366;color:#fff;padding:12px 24px;border-radius:10px;font-weight:600;font-size:0.95rem;text-decoration:none">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <p style="font-size:0.8rem;color:var(--fg-dim);margin-top:12px">Duvidas? Fale conosco:</p>
+    <a class="btn-wpp" href="https://wa.me/5563999147717?text=Paguei%20o%20TrocaRostoAPP%20e%20preciso%20de%20ajuda" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       Suporte WhatsApp
     </a>
   </div>
@@ -753,50 +625,33 @@ h1 span {
     <div class="sr" data-dir="up" data-delay="50">
       <div class="faq-item">
         <div class="faq-q">Funciona em qualquer computador?</div>
-        <div class="faq-a">Sim! Funciona em Windows e Mac. Basta seguir o passo a passo que enviamos.</div>
+        <div class="faq-a">Sim. Windows e Mac. Basta seguir o tutorial que enviamos junto.</div>
       </div>
     </div>
     <div class="sr" data-dir="up" data-delay="100">
       <div class="faq-item">
-        <div class="faq-q">Precisa de placa de vídeo boa?</div>
-        <div class="faq-a">Não necessariamente. O sistema roda em computadores comuns, mas uma placa de vídeo ajuda na fluidez.</div>
+        <div class="faq-q">Precisa de placa de video boa?</div>
+        <div class="faq-a">Nao necessariamente. Roda em computadores comuns. Uma placa dedicada ajuda na fluidez, mas nao e obrigatorio.</div>
       </div>
     </div>
     <div class="sr" data-dir="up" data-delay="150">
       <div class="faq-item">
         <div class="faq-q">Como recebo o produto?</div>
-        <div class="faq-a">Após o pagamento o download é liberado na hora, direto na tela. Você baixa o sistema completo + tutorial.</div>
+        <div class="faq-a">Apos o pagamento o download aparece direto na tela. Voce baixa o sistema completo + tutorial na hora.</div>
       </div>
     </div>
     <div class="sr" data-dir="up" data-delay="200">
       <div class="faq-item">
         <div class="faq-q">Posso usar qualquer rosto?</div>
-        <div class="faq-a">Sim! Basta ter uma foto do rosto que deseja usar. O sistema aceita qualquer imagem.</div>
+        <div class="faq-a">Sim. Basta ter uma foto do rosto que voce quer usar. O sistema aceita qualquer imagem.</div>
       </div>
     </div>
   </div>
 
-  <div class="sr" data-dir="up" data-delay="0">
-    <div class="footer">
-      <p>TrocaRostoAPP &copy; 2026. Todos os direitos reservados.</p>
-    </div>
+  <div class="footer">
+    <p>TrocaRosto 2026. Todos os direitos reservados.</p>
   </div>
 </div>
-
-<!-- Progressive Blur -->
-<div style="position:fixed;bottom:0;left:0;width:100%;height:80px;z-index:999;pointer-events:none" aria-hidden="true" id="progressiveBlur"></div>
-
-<!-- Social Proof Toast -->
-<div class="social-proof-toast" id="socialToast">
-  <div class="toast-icon">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-  </div>
-  <div>
-    <div id="toastName"><strong>Alguém</strong> acabou de comprar</div>
-    <div class="toast-time" id="toastTime">há 2 minutos</div>
-  </div>
-</div>
-
 
 <script src="/vendas-app.js"></script>
 <script>
@@ -807,13 +662,13 @@ h1 span {
     var dir = el.dataset.dir || 'up';
     var delay = parseInt(el.dataset.delay) || 0;
     var tx = 0, ty = 0;
-    if(dir==='up') ty = 40;
-    else if(dir==='down') ty = -40;
-    else if(dir==='left') tx = -40;
-    else if(dir==='right') tx = 40;
+    if(dir==='up') ty = 30;
+    else if(dir==='down') ty = -30;
+    else if(dir==='left') tx = -30;
+    else if(dir==='right') tx = 30;
     el.style.opacity = '0';
     el.style.transform = 'translate('+tx+'px,'+ty+'px)';
-    el.style.transition = 'opacity 0.7s cubic-bezier(0.25,0.46,0.45,0.94) '+delay+'ms, transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94) '+delay+'ms';
+    el.style.transition = 'opacity 0.6s cubic-bezier(0.25,0.46,0.45,0.94) '+delay+'ms, transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94) '+delay+'ms';
     el.style.willChange = 'opacity, transform';
   });
   var obs = new IntersectionObserver(function(entries){
@@ -824,69 +679,8 @@ h1 span {
         obs.unobserve(e.target);
       }
     });
-  }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+  }, { threshold: 0.15, rootMargin: '0px 0px -30px 0px' });
   els.forEach(function(el){ obs.observe(el); });
-})();
-
-// Progressive Blur
-(function(){
-  var container = document.getElementById('progressiveBlur');
-  if(!container) return;
-  var blurs = [0.25,0.5,1,2,4,8,16,32];
-  for(var i=0;i<8;i++){
-    var layer = document.createElement('div');
-    var start = i*12.5, mid1 = start+12.5, mid2 = mid1+12.5, end = mid2+12.5;
-    var mask = 'linear-gradient(to bottom';
-    if(i<6) mask += ',transparent '+start+'%,black '+mid1+'%,black '+mid2+'%,transparent '+end+'%)';
-    else if(i===6) mask += ',transparent '+start+'%,black '+mid1+'%,black 100%)';
-    else mask += ',transparent '+start+'%,black 100%)';
-    layer.style.cssText = 'position:absolute;inset:0;backdrop-filter:blur('+blurs[i]+'px);-webkit-backdrop-filter:blur('+blurs[i]+'px);mask-image:'+mask+';-webkit-mask-image:'+mask;
-    container.appendChild(layer);
-  }
-})();
-
-// Countdown timer
-(function(){
-  var el = document.getElementById('countdown');
-  if(!el) return;
-  var t = 15*60;
-  setInterval(function(){
-    t--;
-    if(t<0) t = 0;
-    var m = Math.floor(t/60), s = t%60;
-    el.textContent = (m<10?'0':'')+m+':'+(s<10?'0':'')+s;
-  }, 1000);
-})();
-
-// Social proof toasts
-(function(){
-  var names = ['Lucas M.','Ana P.','Carlos R.','Julia S.','Pedro H.','Maria L.','Gabriel F.','Fernanda C.','Rafael T.','Bruna A.','Thiago N.','Amanda K.','Diego V.','Camila B.','Gustavo O.'];
-  var cities = ['SP','RJ','MG','BA','PR','RS','PE','CE','GO','PA'];
-  var times = ['agora mesmo','ha 1 min','ha 2 min','ha 3 min','ha 5 min'];
-  var toast = document.getElementById('socialToast');
-  var nameEl = document.getElementById('toastName');
-  var timeEl = document.getElementById('toastTime');
-  function show(){
-    var n = names[Math.floor(Math.random()*names.length)];
-    var c = cities[Math.floor(Math.random()*cities.length)];
-    var tm = times[Math.floor(Math.random()*times.length)];
-    nameEl.innerHTML = '<strong>'+n+'</strong> de '+c+' comprou';
-    timeEl.textContent = tm;
-    toast.classList.add('show');
-    setTimeout(function(){ toast.classList.remove('show'); }, 4000);
-  }
-  setTimeout(show, 8000);
-  setInterval(show, 25000 + Math.random()*15000);
-})();
-
-// Animate buyer count
-(function(){
-  var el = document.getElementById('buyerCount');
-  if(!el) return;
-  var base = 47;
-  setInterval(function(){
-    if(Math.random()>0.6) { base++; el.textContent = base; }
-  }, 30000);
 })();
 
 // Tracking

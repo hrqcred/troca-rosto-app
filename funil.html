@@ -28,20 +28,20 @@ src="https://www.facebook.com/tr?id=1121415800269712&ev=PageView&noscript=1"
 <!-- End Meta Pixel Code -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TrocaRostoAPP - Demo ao Vivo</title>
+<title>TrocaRosto - Troque de rosto em tempo real</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
 :root {
-  --bg: #f5f7fa;
-  --surface: #ffffff;
-  --surface2: #eef1f6;
-  --border: #dde1e8;
-  --fg: #1a1d26;
-  --fg-dim: #6b7280;
-  --accent: #0ea5e9;
-  --accent2: #06b6d4;
-  --glow: rgba(14, 165, 233, 0.2);
+  --bg: #09090b;
+  --surface: #131316;
+  --surface2: #1a1a1f;
+  --border: #232329;
+  --fg: #e4e4e7;
+  --fg-dim: #71717a;
+  --accent: #22d3ee;
+  --accent-dim: rgba(34, 211, 238, 0.08);
+  --accent-glow: rgba(34, 211, 238, 0.15);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -52,43 +52,244 @@ body {
   font-family: 'Inter', system-ui, sans-serif;
   min-height: 100vh;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
+/* ── NAV ── */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.nav-brand {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--fg);
+  letter-spacing: -0.02em;
+}
+.nav-brand span { color: var(--accent); }
+.nav-link {
+  font-size: 0.82rem;
+  color: var(--fg-dim);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  transition: border-color 0.2s, color 0.2s;
+}
+.nav-link:hover { border-color: var(--accent); color: var(--fg); }
+
+/* ── HERO ── */
 .hero {
-  text-align: center;
-  padding: 40px 16px 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 24px 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+.hero-text { max-width: 480px; }
+.hero-tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 20px;
 }
 .hero h1 {
-  font-size: clamp(1.8rem, 5vw, 2.8rem);
-  font-weight: 900;
-  background: linear-gradient(135deg, #0ea5e9, #06b6d4, #0284c7);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 8px;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--fg);
+  margin-bottom: 20px;
 }
-.hero p {
+.hero-desc {
+  font-size: 1.05rem;
   color: var(--fg-dim);
-  font-size: 1rem;
-  max-width: 540px;
-  margin: 0 auto;
-  line-height: 1.6;
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  background: var(--accent);
+  color: #09090b;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.hero-cta:hover { opacity: 0.85; }
+.hero-cta svg { flex-shrink: 0; }
+
+/* ── PHONE MOCKUP ── */
+.mockup-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  position: relative;
+}
+.phone {
+  width: 160px;
+  height: 300px;
+  background: #1a1a1f;
+  border-radius: 28px;
+  border: 2px solid #2a2a32;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+.phone-notch {
+  width: 60px;
+  height: 20px;
+  background: #1a1a1f;
+  border-radius: 0 0 14px 14px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+.phone-screen {
+  position: absolute;
+  inset: 8px;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.phone-left .phone-screen {
+  background: linear-gradient(180deg, #1c2333, #151b28);
+}
+.phone-right .phone-screen {
+  background: linear-gradient(180deg, #1a2c2c, #132020);
+}
+.phone-face {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 12px;
+}
+.phone-left .phone-face {
+  background: linear-gradient(135deg, #3b4a6b, #5a6a8a);
+  border: 2px solid rgba(255,255,255,0.08);
+}
+.phone-right .phone-face {
+  background: linear-gradient(135deg, #2a5a5a, #3a7a7a);
+  border: 2px solid rgba(34,211,238,0.2);
+}
+.phone-label {
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.phone-left .phone-label { color: #5a6a8a; }
+.phone-right .phone-label { color: var(--accent); }
+
+.mockup-arrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: var(--fg-dim);
+}
+.mockup-arrow svg {
+  opacity: 0.4;
+}
+.mockup-arrow span {
+  font-size: 0.55rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  writing-mode: vertical-rl;
+  opacity: 0.4;
 }
 
-.demo-container {
+/* Face detail lines in phone mockup */
+.face-detail {
+  position: absolute;
+  background: rgba(255,255,255,0.06);
+  border-radius: 50%;
+}
+.phone-left .face-detail.eye-l { width: 14px; height: 8px; top: 35%; left: 28%; }
+.phone-left .face-detail.eye-r { width: 14px; height: 8px; top: 35%; right: 28%; }
+.phone-left .face-detail.mouth { width: 20px; height: 6px; bottom: 30%; left: 50%; transform: translateX(-50%); border-radius: 0 0 10px 10px; }
+.phone-right .face-detail.eye-l { width: 14px; height: 8px; top: 35%; left: 28%; background: rgba(34,211,238,0.1); }
+.phone-right .face-detail.eye-r { width: 14px; height: 8px; top: 35%; right: 28%; background: rgba(34,211,238,0.1); }
+.phone-right .face-detail.mouth { width: 20px; height: 6px; bottom: 30%; left: 50%; transform: translateX(-50%); border-radius: 0 0 10px 10px; background: rgba(34,211,238,0.1); }
+
+/* Scanning line animation */
+.scan-line {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0.3;
+  animation: scanMove 3s ease-in-out infinite;
+}
+@keyframes scanMove {
+  0%, 100% { top: 20%; }
+  50% { top: 80%; }
+}
+
+/* ── SECTION DIVIDER ── */
+.section-divider {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.section-divider hr {
+  border: none;
+  border-top: 1px solid var(--border);
+}
+
+/* ── DEMO SECTION ── */
+.demo-section {
   max-width: 900px;
   margin: 0 auto;
-  padding: 0 16px 40px;
+  padding: 80px 24px 40px;
+}
+.demo-header {
+  margin-bottom: 32px;
+}
+.demo-header h2 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+.demo-header p {
+  color: var(--fg-dim);
+  font-size: 0.95rem;
 }
 
 .avatars-section {
   margin-bottom: 24px;
 }
-.avatars-section h3 {
-  font-size: 0.85rem;
+.avatars-label {
+  font-size: 0.75rem;
   color: var(--fg-dim);
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-bottom: 12px;
+  font-weight: 600;
 }
 .avatars-grid {
   display: flex;
@@ -98,9 +299,9 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 .avatar-thumb {
-  width: 64px;
-  height: 64px;
-  border-radius: 12px;
+  width: 56px;
+  height: 56px;
+  border-radius: 10px;
   object-fit: cover;
   cursor: pointer;
   border: 2px solid transparent;
@@ -108,20 +309,20 @@ body {
   flex-shrink: 0;
 }
 .avatar-thumb:hover { border-color: var(--accent); transform: scale(1.05); }
-.avatar-thumb.active { border-color: var(--accent2); box-shadow: 0 0 16px var(--glow); }
+.avatar-thumb.active { border-color: var(--accent); box-shadow: 0 0 20px var(--accent-glow); }
 
 .upload-btn {
-  width: 64px;
-  height: 64px;
-  border-radius: 12px;
-  border: 2px dashed var(--border);
+  width: 56px;
+  height: 56px;
+  border-radius: 10px;
+  border: 1px dashed var(--border);
   background: var(--surface);
   color: var(--fg-dim);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   flex-shrink: 0;
   transition: all 0.2s;
 }
@@ -130,12 +331,11 @@ body {
 .video-area {
   position: relative;
   background: var(--surface);
-  border-radius: 20px;
+  border-radius: 16px;
   border: 1px solid var(--border);
   overflow: hidden;
   aspect-ratio: 4/3;
   max-height: 70vh;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
 }
 
 #outputCanvas {
@@ -150,22 +350,23 @@ body {
 
 .overlay-status {
   position: absolute;
-  top: 16px;
-  left: 16px;
-  background: rgba(255,255,255,0.9);
-  backdrop-filter: blur(8px);
-  padding: 8px 14px;
-  border-radius: 10px;
-  font-size: 0.8rem;
+  top: 12px;
+  left: 12px;
+  background: rgba(9,9,11,0.75);
+  backdrop-filter: blur(12px);
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.72rem;
   font-weight: 600;
   display: flex;
   align-items: center;
-  gap: 8px;
-  color: var(--fg);
+  gap: 6px;
+  color: var(--fg-dim);
+  border: 1px solid var(--border);
 }
 .status-dot {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background: #ef4444;
 }
@@ -178,30 +379,32 @@ body {
 
 .overlay-fps {
   position: absolute;
-  top: 16px;
-  right: 16px;
-  background: rgba(255,255,255,0.9);
-  backdrop-filter: blur(8px);
-  padding: 6px 12px;
+  top: 12px;
+  right: 12px;
+  background: rgba(9,9,11,0.75);
+  backdrop-filter: blur(12px);
+  padding: 6px 10px;
   border-radius: 8px;
-  font-size: 0.75rem;
+  font-size: 0.68rem;
   font-weight: 600;
   color: var(--accent);
+  border: 1px solid var(--border);
+  font-variant-numeric: tabular-nums;
 }
 
 .controls {
   display: flex;
-  gap: 12px;
-  margin-top: 16px;
+  gap: 10px;
+  margin-top: 14px;
   flex-wrap: wrap;
 }
 
 .btn {
-  padding: 12px 24px;
-  border-radius: 12px;
+  padding: 10px 20px;
+  border-radius: 10px;
   border: none;
   font-family: inherit;
-  font-size: 0.9rem;
+  font-size: 0.82rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
@@ -210,38 +413,39 @@ body {
   gap: 8px;
 }
 .btn-primary {
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  color: white;
-  box-shadow: 0 4px 20px var(--glow);
+  background: var(--accent);
+  color: #09090b;
 }
-.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 30px var(--glow); }
-.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.btn-primary:hover { opacity: 0.85; }
+.btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
 .btn-secondary {
-  background: var(--surface);
+  background: var(--surface2);
   color: var(--fg);
   border: 1px solid var(--border);
 }
-.btn-secondary:hover { border-color: var(--accent); }
+.btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
 
 .slider-group {
-  margin-top: 16px;
+  margin-top: 14px;
   display: flex;
   gap: 24px;
   flex-wrap: wrap;
 }
 .slider-item {
   flex: 1;
-  min-width: 200px;
+  min-width: 180px;
 }
 .slider-item label {
-  font-size: 0.8rem;
+  font-size: 0.72rem;
   color: var(--fg-dim);
   display: block;
   margin-bottom: 6px;
+  font-weight: 500;
 }
 .slider-item input[type=range] {
   width: 100%;
   accent-color: var(--accent);
+  height: 4px;
 }
 
 .start-screen {
@@ -253,16 +457,16 @@ body {
   justify-content: center;
   background: var(--surface);
   z-index: 10;
-  gap: 16px;
+  gap: 12px;
 }
 .start-screen svg {
-  width: 64px;
-  height: 64px;
-  color: var(--accent2);
+  width: 48px;
+  height: 48px;
+  color: var(--fg-dim);
 }
 .start-screen p {
   color: var(--fg-dim);
-  font-size: 0.95rem;
+  font-size: 0.85rem;
 }
 .start-screen.hidden { display: none; }
 
@@ -270,68 +474,124 @@ body {
   position: absolute;
   bottom: 0;
   left: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  height: 2px;
+  background: var(--accent);
   transition: width 0.3s;
   z-index: 20;
 }
 
-.cta-bottom {
-  text-align: center;
-  margin-top: 40px;
-  padding: 32px;
-  background: var(--surface);
-  border-radius: 20px;
-  border: 1px solid var(--border);
-  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
-}
-.cta-bottom h3 {
-  font-size: 1.3rem;
-  margin-bottom: 8px;
-}
-.cta-bottom .price {
-  font-size: 0.95rem;
-  color: var(--fg-dim);
-  margin-bottom: 20px;
-}
-.cta-bottom .price strong {
-  font-size: 1.6rem;
-  color: var(--accent);
-  font-weight: 800;
-}
-.btn-cta {
-  padding: 14px 32px;
-  border-radius: 12px;
-  border: none;
-  background: linear-gradient(135deg, #22c55e, #16a34a);
-  color: white;
-  font-family: inherit;
-  font-size: 1rem;
-  font-weight: 700;
-  cursor: pointer;
-  text-decoration: none;
-  display: inline-block;
-  transition: all 0.2s;
-}
-.btn-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(34,197,94,0.3); }
-
 .watermark {
   position: absolute;
-  bottom: 16px;
+  bottom: 12px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 0.7rem;
-  color: rgba(0,0,0,0.15);
+  font-size: 0.6rem;
+  color: rgba(255,255,255,0.06);
   font-weight: 700;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.2em;
   pointer-events: none;
+  text-transform: uppercase;
 }
 
+/* ── FEATURES ── */
+.features-section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 60px 24px 40px;
+}
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.feature-item {
+  background: var(--surface);
+  padding: 28px 24px;
+}
+.feature-item svg {
+  color: var(--accent);
+  margin-bottom: 14px;
+  opacity: 0.7;
+}
+.feature-item h4 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+.feature-item p {
+  font-size: 0.78rem;
+  color: var(--fg-dim);
+  line-height: 1.5;
+}
+
+/* ── CTA BOTTOM ── */
+.cta-section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+.cta-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+.cta-card h3 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+.cta-card p {
+  color: var(--fg-dim);
+  font-size: 0.9rem;
+}
+.cta-card .price-inline {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--fg);
+  white-space: nowrap;
+}
+.cta-card .price-inline small {
+  font-size: 0.8rem;
+  color: var(--fg-dim);
+  font-weight: 500;
+  margin-left: 4px;
+}
+.cta-buy {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  background: var(--accent);
+  color: #09090b;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+  margin-top: 16px;
+}
+.cta-buy:hover { opacity: 0.85; }
+
+/* ── POPUP ── */
 .popup-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.5);
-  backdrop-filter: blur(6px);
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(8px);
   z-index: 1000;
   display: flex;
   align-items: center;
@@ -343,75 +603,170 @@ body {
 @keyframes popIn { to { opacity: 1; } }
 .popup-box {
   background: var(--surface);
-  border: 1px solid var(--accent);
-  border-radius: 20px;
-  padding: 32px 28px;
-  max-width: 440px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 36px 28px;
+  max-width: 400px;
   text-align: center;
-  box-shadow: 0 8px 40px var(--glow);
+}
+.popup-box h3 {
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+  letter-spacing: -0.02em;
 }
 .popup-box p {
-  font-size: 1rem;
+  font-size: 0.9rem;
   line-height: 1.7;
   margin-bottom: 24px;
-  color: var(--fg);
+  color: var(--fg-dim);
 }
-.popup-box .btn-cta {
+.popup-box .popup-cta {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  background: var(--accent);
+  color: #09090b;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
   margin-bottom: 12px;
+  transition: opacity 0.2s;
 }
+.popup-box .popup-cta:hover { opacity: 0.85; }
 .popup-close {
   background: none;
   border: none;
   color: var(--fg-dim);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   cursor: pointer;
   font-family: inherit;
 }
 .popup-close:hover { color: var(--fg); }
 
-
-.features {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
-  margin-top: 24px;
-}
-.feature-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 20px;
+/* ── FOOTER ── */
+.footer {
   text-align: center;
-}
-.feature-card .icon {
-  font-size: 1.8rem;
-  margin-bottom: 8px;
-}
-.feature-card h4 {
-  font-size: 0.9rem;
-  margin-bottom: 4px;
-}
-.feature-card p {
-  font-size: 0.8rem;
+  padding: 40px 24px;
+  font-size: 0.7rem;
   color: var(--fg-dim);
-  line-height: 1.4;
+  border-top: 1px solid var(--border);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    padding: 40px 16px 60px;
+    text-align: center;
+  }
+  .hero-text { max-width: 100%; }
+  .mockup-area { gap: 14px; }
+  .phone {
+    width: 130px;
+    height: 250px;
+    border-radius: 22px;
+  }
+  .phone-notch { width: 48px; height: 16px; border-radius: 0 0 10px 10px; }
+  .phone-screen { inset: 6px; border-radius: 16px; }
+  .phone-face { width: 60px; height: 60px; margin-bottom: 10px; }
+  .hero-cta { width: 100%; justify-content: center; }
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+  .cta-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 28px 20px;
+  }
+  .cta-buy { width: 100%; justify-content: center; }
+  .demo-section, .features-section, .cta-section {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 }
 </style>
 </head>
 <body>
 
-<div class="hero">
-  <div class="sr" data-dir="down" data-delay="0">
-    <h1>TrocaRostoAPP - Teste Agora</h1>
-  </div>
-  <div class="sr" data-dir="up" data-delay="150">
-    <p>Troque de rosto em tempo real em videochamadas, sites e aplicativos. Escolha um avatar e veja funcionando na sua webcam.</p>
-  </div>
-</div>
+<nav class="nav">
+  <div class="nav-brand">Troca<span>Rosto</span></div>
+  <a class="nav-link" href="/vendas">Garantir acesso</a>
+</nav>
 
-<div class="demo-container">
+<section class="hero">
+  <div class="hero-text">
+    <div class="sr" data-dir="down" data-delay="0">
+      <p class="hero-tag">Face swap em tempo real</p>
+    </div>
+    <div class="sr" data-dir="left" data-delay="100">
+      <h1>Seu rosto vira qualquer rosto. Ao vivo.</h1>
+    </div>
+    <div class="sr" data-dir="left" data-delay="200">
+      <p class="hero-desc">Funciona no Zoom, Google Meet, WhatsApp Web e qualquer site ou app que use camera. Escolhe o rosto, liga a webcam e pronto.</p>
+    </div>
+    <div class="sr" data-dir="up" data-delay="300">
+      <a class="hero-cta" href="#demo">
+        Testar agora
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="mockup-area sr" data-dir="right" data-delay="200">
+    <div class="phone phone-left">
+      <div class="phone-notch"></div>
+      <div class="phone-screen">
+        <div class="phone-face" style="position:relative">
+          <div class="face-detail eye-l"></div>
+          <div class="face-detail eye-r"></div>
+          <div class="face-detail mouth"></div>
+        </div>
+        <span class="phone-label">Seu rosto</span>
+      </div>
+    </div>
+
+    <div class="mockup-arrow">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </div>
+
+    <div class="phone phone-right">
+      <div class="phone-notch"></div>
+      <div class="phone-screen">
+        <div class="scan-line"></div>
+        <div class="phone-face" style="position:relative">
+          <div class="face-detail eye-l"></div>
+          <div class="face-detail eye-r"></div>
+          <div class="face-detail mouth"></div>
+        </div>
+        <span class="phone-label">Novo rosto</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"><hr></div>
+
+<section class="demo-section" id="demo">
+  <div class="demo-header">
+    <div class="sr" data-dir="up" data-delay="0">
+      <h2>Teste ao vivo no seu navegador</h2>
+    </div>
+    <div class="sr" data-dir="up" data-delay="100">
+      <p>Selecione um rosto abaixo, ligue a webcam e veja a troca acontecendo.</p>
+    </div>
+  </div>
+
   <div class="avatars-section">
-    <h3>Escolha um avatar</h3>
+    <p class="avatars-label">Selecione um rosto</p>
     <div class="avatars-grid" id="avatarsGrid">
       <label class="upload-btn" title="Enviar sua foto">
         +
@@ -438,12 +793,12 @@ body {
     </div>
     <div class="overlay-fps" id="fpsDisplay">-- FPS</div>
     <div class="loading-bar" id="loadingBar" style="width:0%"></div>
-    <div class="watermark">TROCAROSTOAPP DEMO</div>
+    <div class="watermark">TrocaRosto Demo</div>
   </div>
 
   <div class="controls">
     <button class="btn btn-primary" id="btnStart">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"/></svg>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"/></svg>
       Iniciar Webcam
     </button>
     <button class="btn btn-secondary" id="btnToggle" disabled>
@@ -456,57 +811,66 @@ body {
 
   <div class="slider-group">
     <div class="slider-item">
-      <label>Blend (Intensidade): <span id="blendVal">85</span>%</label>
+      <label>Intensidade: <span id="blendVal">85</span>%</label>
       <input type="range" id="blendSlider" min="0" max="100" value="85">
     </div>
     <div class="slider-item">
-      <label>Suavização: <span id="smoothVal">15</span></label>
+      <label>Suavizacao: <span id="smoothVal">15</span></label>
       <input type="range" id="smoothSlider" min="0" max="40" value="15">
     </div>
   </div>
+</section>
 
-  <div class="features">
+<section class="features-section">
+  <div class="features-grid">
     <div class="sr" data-dir="up" data-delay="0">
-      <div class="feature-card">
-        <div class="icon">📹</div>
+      <div class="feature-item">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"/></svg>
         <h4>Videochamadas</h4>
-        <p>Funciona no Zoom, Google Meet, Teams e qualquer app de video</p>
+        <p>Zoom, Google Meet, Teams, Discord. Qualquer plataforma de video que use webcam.</p>
       </div>
     </div>
-    <div class="sr" data-dir="up" data-delay="150">
-      <div class="feature-card">
-        <div class="icon">🌐</div>
-        <h4>Sites e Apps</h4>
-        <p>Use em qualquer site ou aplicativo que use câmera</p>
+    <div class="sr" data-dir="up" data-delay="100">
+      <div class="feature-item">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        <h4>Sites e aplicativos</h4>
+        <p>Qualquer site ou app que peca acesso a camera funciona com o TrocaRosto.</p>
       </div>
     </div>
-    <div class="sr" data-dir="up" data-delay="300">
-      <div class="feature-card">
-        <div class="icon">⚡</div>
-        <h4>Tempo Real</h4>
-        <p>Troca instantânea, sem delay, funciona ao vivo</p>
+    <div class="sr" data-dir="up" data-delay="200">
+      <div class="feature-item">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <h4>Tempo real</h4>
+        <p>A troca acontece instantaneamente. Sem delay, sem travamento, ao vivo.</p>
       </div>
     </div>
   </div>
+</section>
 
-  <div class="sr" data-dir="up" data-delay="100">
-    <div class="cta-bottom">
-      <h3>Tenha o TrocaRostoAPP completo</h3>
-      <p class="price">Por apenas <strong>R$ 49,90</strong></p>
-      <a class="btn-cta" href="/vendas">Quero o TrocaRostoAPP</a>
+<section class="cta-section">
+  <div class="sr" data-dir="up" data-delay="0">
+    <div class="cta-card">
+      <div>
+        <h3>Versao completa do TrocaRosto</h3>
+        <p>Qualidade superior, sem limite de tempo, seu pra sempre.</p>
+        <a class="cta-buy" href="/vendas">Garantir por R$ 49,90</a>
+      </div>
+      <div class="price-inline">
+        R$ 49<small>,90</small>
+      </div>
     </div>
   </div>
+</section>
+
+<div class="footer">
+  TrocaRosto 2026. Todos os direitos reservados.
 </div>
-
-<!-- Progressive Blur -->
-<div style="position:fixed;bottom:0;left:0;width:100%;height:80px;z-index:999;pointer-events:none" aria-hidden="true" id="progressiveBlur"></div>
-
 
 <div class="popup-overlay" id="popupOverlay" style="display:none">
   <div class="popup-box">
-    <p style="font-size:1.1rem;font-weight:700;margin-bottom:8px">Tempo de teste esgotado!</p>
-    <p>Gostou do resultado? O sistema completo tem qualidade muito superior, funciona em qualquer site, app ou videochamada e é seu pra sempre.</p>
-    <a class="btn-cta" href="/vendas" style="margin-top:8px">Quero o TrocaRostoAPP por R$ 49,90</a><br>
+    <h3>Tempo de teste esgotado</h3>
+    <p>Gostou? A versao completa tem qualidade muito superior e funciona sem limite de tempo em qualquer site, app ou videochamada.</p>
+    <a class="popup-cta" href="/vendas">Garantir por R$ 49,90</a>
     <button class="popup-close" id="popupClose">Ver mais detalhes</button>
   </div>
 </div>
@@ -628,7 +992,7 @@ async function detectAvatarLandmarks() {
   } else {
     avatarLandmarks = null;
     triIndices = null;
-    alert('Rosto não detectado nesse avatar. Escolha outro.');
+    alert('Rosto nao detectado nesse avatar. Escolha outro.');
   }
   if (running) {
     await ensureVideoMode();
@@ -690,7 +1054,7 @@ async function startWebcam() {
     fpsTimer = performance.now();
     renderLoop();
   } catch (err) {
-    alert('Não foi possível acessar a webcam. Verifique as permissões do navegador.');
+    alert('Nao foi possivel acessar a webcam. Verifique as permissoes do navegador.');
   }
 }
 
@@ -828,7 +1192,7 @@ document.getElementById('btnToggle').addEventListener('click', async () => {
   }
   if (!avatarLandmarks || !triIndices) {
     if (!avatarImg) {
-      alert('Selecione um avatar primeiro!');
+      alert('Selecione um rosto primeiro!');
     } else if (!modelReady) {
       alert('Modelo ainda carregando, aguarde...');
     } else {
@@ -907,23 +1271,6 @@ document.getElementById('smoothSlider').addEventListener('input', e => {
     });
   }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
   els.forEach(function(el){ obs.observe(el); });
-})();
-
-// Progressive Blur
-(function(){
-  var container = document.getElementById('progressiveBlur');
-  if(!container) return;
-  var blurs = [0.25,0.5,1,2,4,8,16,32];
-  for(var i=0;i<8;i++){
-    var layer = document.createElement('div');
-    var start = i*12.5, mid1 = start+12.5, mid2 = mid1+12.5, end = mid2+12.5;
-    var mask = 'linear-gradient(to bottom';
-    if(i<6) mask += ',transparent '+start+'%,black '+mid1+'%,black '+mid2+'%,transparent '+end+'%)';
-    else if(i===6) mask += ',transparent '+start+'%,black '+mid1+'%,black 100%)';
-    else mask += ',transparent '+start+'%,black 100%)';
-    layer.style.cssText = 'position:absolute;inset:0;backdrop-filter:blur('+blurs[i]+'px);-webkit-backdrop-filter:blur('+blurs[i]+'px);mask-image:'+mask+';-webkit-mask-image:'+mask;
-    container.appendChild(layer);
-  }
 })();
 
 // Tracking
