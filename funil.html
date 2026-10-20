@@ -28,7 +28,7 @@ src="https://www.facebook.com/tr?id=1121415800269712&ev=PageView&noscript=1"
 <!-- End Meta Pixel Code -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TrocaRosto - Troque de rosto em tempo real</title>
+<title>TrocaRosto - Burlador de selfie em tempo real</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
@@ -180,18 +180,17 @@ body {
 .phone-right .phone-screen {
   background: linear-gradient(180deg, #1a2c2c, #132020);
 }
-.phone-face {
+.phone-face-img {
   width: 80px;
   height: 80px;
   border-radius: 50%;
+  object-fit: cover;
   margin-bottom: 12px;
 }
-.phone-left .phone-face {
-  background: linear-gradient(135deg, #3b4a6b, #5a6a8a);
+.phone-left .phone-face-img {
   border: 2px solid rgba(255,255,255,0.08);
 }
-.phone-right .phone-face {
-  background: linear-gradient(135deg, #2a5a5a, #3a7a7a);
+.phone-right .phone-face-img {
   border: 2px solid rgba(34,211,238,0.2);
 }
 .phone-label {
@@ -222,18 +221,6 @@ body {
   opacity: 0.4;
 }
 
-/* Face detail lines in phone mockup */
-.face-detail {
-  position: absolute;
-  background: rgba(255,255,255,0.06);
-  border-radius: 50%;
-}
-.phone-left .face-detail.eye-l { width: 14px; height: 8px; top: 35%; left: 28%; }
-.phone-left .face-detail.eye-r { width: 14px; height: 8px; top: 35%; right: 28%; }
-.phone-left .face-detail.mouth { width: 20px; height: 6px; bottom: 30%; left: 50%; transform: translateX(-50%); border-radius: 0 0 10px 10px; }
-.phone-right .face-detail.eye-l { width: 14px; height: 8px; top: 35%; left: 28%; background: rgba(34,211,238,0.1); }
-.phone-right .face-detail.eye-r { width: 14px; height: 8px; top: 35%; right: 28%; background: rgba(34,211,238,0.1); }
-.phone-right .face-detail.mouth { width: 20px; height: 6px; bottom: 30%; left: 50%; transform: translateX(-50%); border-radius: 0 0 10px 10px; background: rgba(34,211,238,0.1); }
 
 /* Scanning line animation */
 .scan-line {
@@ -677,7 +664,7 @@ body {
   }
   .phone-notch { width: 48px; height: 16px; border-radius: 0 0 10px 10px; }
   .phone-screen { inset: 6px; border-radius: 16px; }
-  .phone-face { width: 60px; height: 60px; margin-bottom: 10px; }
+  .phone-face-img { width: 60px; height: 60px; margin-bottom: 10px; }
   .hero-cta { width: 100%; justify-content: center; }
   .features-grid {
     grid-template-columns: 1fr;
@@ -705,13 +692,13 @@ body {
 <section class="hero">
   <div class="hero-text">
     <div class="sr" data-dir="down" data-delay="0">
-      <p class="hero-tag">Face swap em tempo real</p>
+      <p class="hero-tag">Burlador de selfie em tempo real</p>
     </div>
     <div class="sr" data-dir="left" data-delay="100">
       <h1>Seu rosto vira qualquer rosto. Ao vivo.</h1>
     </div>
     <div class="sr" data-dir="left" data-delay="200">
-      <p class="hero-desc">Funciona no Zoom, Google Meet, WhatsApp Web e qualquer site ou app que use camera. Escolhe o rosto, liga a webcam e pronto.</p>
+      <p class="hero-desc">Funciona no Zoom, Google Meet, WhatsApp Web e qualquer site ou app que use câmera. Escolha o rosto, ligue a webcam e pronto.</p>
     </div>
     <div class="sr" data-dir="up" data-delay="300">
       <a class="hero-cta" href="#demo">
@@ -725,11 +712,7 @@ body {
     <div class="phone phone-left">
       <div class="phone-notch"></div>
       <div class="phone-screen">
-        <div class="phone-face" style="position:relative">
-          <div class="face-detail eye-l"></div>
-          <div class="face-detail eye-r"></div>
-          <div class="face-detail mouth"></div>
-        </div>
+        <img src="/avatars/obama.jpg" alt="Rosto original" class="phone-face-img">
         <span class="phone-label">Seu rosto</span>
       </div>
     </div>
@@ -742,12 +725,8 @@ body {
       <div class="phone-notch"></div>
       <div class="phone-screen">
         <div class="scan-line"></div>
-        <div class="phone-face" style="position:relative">
-          <div class="face-detail eye-l"></div>
-          <div class="face-detail eye-r"></div>
-          <div class="face-detail mouth"></div>
-        </div>
-        <span class="phone-label">Novo rosto</span>
+        <img src="/avatars/ronaldo.png" alt="Rosto trocado" class="phone-face-img">
+        <span class="phone-label">Rosto burlado</span>
       </div>
     </div>
   </div>
@@ -761,14 +740,14 @@ body {
       <h2>Teste ao vivo no seu navegador</h2>
     </div>
     <div class="sr" data-dir="up" data-delay="100">
-      <p>Selecione um rosto abaixo, ligue a webcam e veja a troca acontecendo.</p>
+      <p>Selecione uma foto selfie para testar nossa demonstração.</p>
     </div>
   </div>
 
   <div class="avatars-section">
-    <p class="avatars-label">Selecione um rosto</p>
+    <p class="avatars-label">Envie sua selfie</p>
     <div class="avatars-grid" id="avatarsGrid">
-      <label class="upload-btn" title="Enviar sua foto">
+      <label class="upload-btn" title="Selecionar foto selfie">
         +
         <input type="file" accept="image/*" id="uploadAvatar" style="display:none">
       </label>
@@ -815,7 +794,7 @@ body {
       <input type="range" id="blendSlider" min="0" max="100" value="85">
     </div>
     <div class="slider-item">
-      <label>Suavizacao: <span id="smoothVal">15</span></label>
+      <label>Suavização: <span id="smoothVal">15</span></label>
       <input type="range" id="smoothSlider" min="0" max="40" value="15">
     </div>
   </div>
@@ -827,14 +806,14 @@ body {
       <div class="feature-item">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"/></svg>
         <h4>Videochamadas</h4>
-        <p>Zoom, Google Meet, Teams, Discord. Qualquer plataforma de video que use webcam.</p>
+        <p>Zoom, Google Meet, Teams, Discord. Qualquer plataforma de vídeo que use webcam.</p>
       </div>
     </div>
     <div class="sr" data-dir="up" data-delay="100">
       <div class="feature-item">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
         <h4>Sites e aplicativos</h4>
-        <p>Qualquer site ou app que peca acesso a camera funciona com o TrocaRosto.</p>
+        <p>Qualquer site ou app que peça acesso à câmera funciona com o TrocaRosto.</p>
       </div>
     </div>
     <div class="sr" data-dir="up" data-delay="200">
@@ -851,7 +830,7 @@ body {
   <div class="sr" data-dir="up" data-delay="0">
     <div class="cta-card">
       <div>
-        <h3>Versao completa do TrocaRosto</h3>
+        <h3>Versão completa do TrocaRosto</h3>
         <p>Qualidade superior, sem limite de tempo, seu pra sempre.</p>
         <a class="cta-buy" href="/vendas">Garantir por R$ 49,90</a>
       </div>
@@ -869,9 +848,18 @@ body {
 <div class="popup-overlay" id="popupOverlay" style="display:none">
   <div class="popup-box">
     <h3>Tempo de teste esgotado</h3>
-    <p>Gostou? A versao completa tem qualidade muito superior e funciona sem limite de tempo em qualquer site, app ou videochamada.</p>
+    <p>Gostou? A versão completa tem qualidade muito superior e funciona sem limite de tempo em qualquer site, app ou videochamada.</p>
     <a class="popup-cta" href="/vendas">Garantir por R$ 49,90</a>
     <button class="popup-close" id="popupClose">Ver mais detalhes</button>
+  </div>
+</div>
+
+<div class="popup-overlay" id="welcomePopup">
+  <div class="popup-box">
+    <h3>⚠ Aviso importante</h3>
+    <p>Clique no <strong>"+"</strong> para selecionar uma foto e inicie sua câmera para trocar de rosto.</p>
+    <p>Nosso sistema completo é mais avançado. Após o pagamento, a entrega será liberada e entraremos em contato pelo seu WhatsApp para ensinar a usar.</p>
+    <button class="popup-cta" id="welcomeClose">Entendi</button>
   </div>
 </div>
 
@@ -879,14 +867,6 @@ body {
 import { FaceLandmarker, FilesetResolver } from 'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/vision_bundle.mjs';
 import Delaunator from 'https://cdn.jsdelivr.net/npm/delaunator@5.0.1/+esm';
 
-const AVATARS = [
-  { name: 'Einstein', url: '/avatars/einstein.jpg' },
-  { name: 'Ronaldo', url: '/avatars/ronaldo.png' },
-  { name: 'Obama', url: '/avatars/obama.jpg' },
-  { name: 'Eminem', url: '/avatars/eminem.jpg' },
-  { name: 'Jobs', url: '/avatars/jobs.jpg' },
-  { name: 'Schwarzenegger', url: '/avatars/schwarzenegger.png' },
-];
 
 const FACE_OVAL = [10,338,297,332,284,251,389,356,454,323,361,288,397,365,379,378,400,377,152,148,176,149,150,136,172,58,132,93,234,127,162,21,54,103,67,109];
 
@@ -945,14 +925,6 @@ function computeTriangulation() {
 }
 
 const grid = document.getElementById('avatarsGrid');
-AVATARS.forEach((av) => {
-  const img = document.createElement('img');
-  img.src = av.url;
-  img.alt = av.name;
-  img.className = 'avatar-thumb';
-  img.addEventListener('click', () => selectAvatar(img, av.url));
-  grid.insertBefore(img, grid.firstChild);
-});
 
 document.getElementById('uploadAvatar').addEventListener('change', e => {
   const file = e.target.files[0];
@@ -992,7 +964,7 @@ async function detectAvatarLandmarks() {
   } else {
     avatarLandmarks = null;
     triIndices = null;
-    alert('Rosto nao detectado nesse avatar. Escolha outro.');
+    alert('Rosto não detectado nessa foto. Escolha outra.');
   }
   if (running) {
     await ensureVideoMode();
@@ -1054,7 +1026,7 @@ async function startWebcam() {
     fpsTimer = performance.now();
     renderLoop();
   } catch (err) {
-    alert('Nao foi possivel acessar a webcam. Verifique as permissoes do navegador.');
+    alert('Não foi possível acessar a webcam. Verifique as permissões do navegador.');
   }
 }
 
@@ -1225,6 +1197,10 @@ document.getElementById('btnToggle').addEventListener('click', async () => {
 
 document.getElementById('popupClose').addEventListener('click', () => {
   window.location.href = '/vendas';
+});
+
+document.getElementById('welcomeClose').addEventListener('click', () => {
+  document.getElementById('welcomePopup').style.display = 'none';
 });
 
 document.getElementById('btnScreenshot').addEventListener('click', () => {
